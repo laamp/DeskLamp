@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+
+@import "variables";
+
+* {
+  border: 1px solid red;
+}
+
+body {
+  background-color: $login-bg-color;
+  font-family: 'Fakt Soft',
+    'Helvetica Neue',
+    helvetica,
+    'Apple Color Emoji',
+    arial,
+    sans-serif;
+}
+
+.signin-form-container {
+  max-width: 1000px;
+  margin: 45px auto 20px auto;
+}
+
+.signin-form-box {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px 0 #bfbfbf;
+  padding: 30px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.field label {
+  font-weight: bold;
+}
