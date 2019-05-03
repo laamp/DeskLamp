@@ -1,0 +1,44 @@
+@import "variables";
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 5px;
+}
+
+div.header-left h1 {
+  margin-left: 10px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+.header-right a {
+  margin-left: 7px;
+}
+
+header a {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#sign-up-button {
+  transition: all 0.2s ease;
+  background-color: $bc-black;
+  color: white;
+  padding: 12px 20px 9px 20px;
+  border-radius: 3em;
+  text-decoration: none;
+}

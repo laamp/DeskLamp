@@ -10,12 +10,22 @@ class SessionForm extends React.Component {
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  guestLogin() {
+    const guest = {
+      email: "fake_email@desklamp.com",
+      name: "D. Hansson",
+      password: "password"
+    };
+    this.setState(guest);
   }
 
   handleSubmit(e) {
@@ -36,16 +46,43 @@ class SessionForm extends React.Component {
     );
   }
 
+  formGreeting() {
+    if (this.props.formType === 'signin') {
+      return (<h2>Log in to DeskLamp</h2>);
+    } else {
+      return (<h2>Sign up with DeskLamp</h2>);
+    }
+  }
+
+  formButton() {
+    if (this.props.formType === 'signin') {
+      return ("Log in");
+    } else {
+      return ("Sign up");
+    }
+  }
+
+  guestButton() {
+    if (this.props.formType === 'signin') {
+      return (
+        <button id="guest-signin-button" onClick={this.guestLogin}>
+          <h3>
+            Guest Log in
+          </h3>
+        </button>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="signin-form-container">
         <form onSubmit={this.handleSubmit} className="signin-form-box">
-          <h1>Welcome to DeskLamp!</h1>
-          {/* Please {this.props.formType} or {this.props.navLink}
-          {this.renderErrors()} */}
+          {this.formGreeting()}
+          {this.guestButton()}
           <div className="signin-form">
             <div className="field">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
@@ -54,7 +91,7 @@ class SessionForm extends React.Component {
               />
             </div>
             <div className="field">
-              <label for="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input type="text"
                 value={this.state.name}
                 onChange={this.update('name')}
@@ -63,7 +100,7 @@ class SessionForm extends React.Component {
               />
             </div>
             <div className="field">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
@@ -71,7 +108,8 @@ class SessionForm extends React.Component {
                 id="password"
               />
             </div>
-            <input className="session-submit" type="submit" value={this.props.formType} />
+            <input className="session-submit" type="submit" value={this.formButton()} />
+            {this.renderErrors()}
           </div>
         </form>
       </div>

@@ -16,47 +16,45 @@
 
 @import "variables";
 
-* {
-  border: 1px solid red;
-}
+// * {
+//   border: 1px solid red;
+// }
 
 body {
   background-color: $login-bg-color;
-  font-family: 'Fakt Soft',
-    'Helvetica Neue',
-    helvetica,
-    'Apple Color Emoji',
-    arial,
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-.signin-form-container {
-  max-width: 1000px;
-  margin: 45px auto 20px auto;
-}
-
-.signin-form-box {
-  display: flex;
-  flex-direction: column;
-  max-width: 380px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px 0 #bfbfbf;
-  padding: 30px;
-}
-
-.signin-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.field label {
+h1 {
+  font-size: 38px;
   font-weight: bold;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.company-logo {
+  background-image: url(./basecamp-logo.png);
+  background-repeat: no-repeat;
+  background-size: $logo-size $logo-size;
+  height: $logo-size;
+  width: $logo-size;
+}
+
+a {
+  color: $bc-black;
+}
+
+a:visited {
+  color: $bc-black;
+}
+
+a:hover {
+  color: $bc-green;
+}
+
+a:active {
+  color: $bc-green;
 }
