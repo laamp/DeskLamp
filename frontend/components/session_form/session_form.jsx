@@ -62,14 +62,35 @@ class SessionForm extends React.Component {
     }
   }
 
+  renderName() {
+    if (this.props.formType === 'signup') {
+      return (
+        <div className="field">
+          <label htmlFor="name">Name</label>
+          <input type="text"
+            value={this.state.name}
+            onChange={this.update('name')}
+            className="signin-input"
+            id="name"
+          />
+        </div>
+      )
+    }
+  }
+
   guestButton() {
     if (this.props.formType === 'signin') {
       return (
-        <button id="guest-signin-button" onClick={this.guestLogin}>
-          <h3>
-            Guest Log in
-          </h3>
-        </button>
+        <>
+          <button id="guest-signin-button" onClick={this.guestLogin}>
+            <h3>
+              Guest Log in
+            </h3>
+          </button>
+          <div id="break">
+            <p>Or, use my email address</p>
+          </div>
+        </>
       );
     }
   }
@@ -77,6 +98,7 @@ class SessionForm extends React.Component {
   render() {
     return (
       <div className="signin-form-container">
+        <div id="floating-logo"></div>
         <form onSubmit={this.handleSubmit} className="signin-form-box">
           {this.formGreeting()}
           {this.guestButton()}
@@ -88,17 +110,10 @@ class SessionForm extends React.Component {
                 onChange={this.update('email')}
                 className="signin-input"
                 id="email"
+                placeholder="e.g. your.email@email.com"
               />
             </div>
-            <div className="field">
-              <label htmlFor="name">Name</label>
-              <input type="text"
-                value={this.state.name}
-                onChange={this.update('name')}
-                className="signin-input"
-                id="name"
-              />
-            </div>
+            {this.renderName()}
             <div className="field">
               <label htmlFor="password">Password</label>
               <input type="password"
@@ -115,7 +130,6 @@ class SessionForm extends React.Component {
       </div>
     );
   }
-
 }
 
 export default withRouter(SessionForm);
