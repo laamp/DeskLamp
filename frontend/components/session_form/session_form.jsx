@@ -1,5 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import GreetingContainer from '../greeting/greeting_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -97,49 +98,49 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <section className="signin-container">
-
-        <div id="floating-logo"></div>
-
-        <div className="signin-box">
-
-          {this.formGreeting()}
-          {this.guestButton()}
-
-          <form onSubmit={this.handleSubmit} className="signin-form">
-
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                className="signin-input"
-                id="email"
-                placeholder="e.g. your.email@email.com"
-              />
+      <>
+        <header>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <div className="header-left">
+              <div className="company-logo"></div>
+              <h1 id="company-h1">DeskLamp</h1>
             </div>
+          </Link>
+          <GreetingContainer />
+        </header>
 
-            {this.renderName()}
-
-            <div className="field">
-              <label htmlFor="password">Password</label>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="signin-input"
-                id="password"
-              />
-            </div>
-
-            <input className="session-submit" type="submit" value={this.formButton()} />
-
-          </form>
-
-          {this.renderErrors()}
-
-        </div>
-
-      </section>
+        <section className="signin-container">
+          <div id="floating-logo"></div>
+          <div className="signin-box">
+            {this.formGreeting()}
+            {this.guestButton()}
+            <form onSubmit={this.handleSubmit} className="signin-form">
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  className="signin-input"
+                  id="email"
+                  placeholder="e.g. your.email@email.com"
+                />
+              </div>
+              {this.renderName()}
+              <div className="field">
+                <label htmlFor="password">Password</label>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  className="signin-input"
+                  id="password"
+                />
+              </div>
+              <input className="session-submit" type="submit" value={this.formButton()} />
+            </form>
+            {this.renderErrors()}
+          </div>
+        </section>
+      </>
     );
   }
 }

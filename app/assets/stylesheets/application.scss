@@ -32,7 +32,7 @@ h3 {
 }
 
 .company-logo {
-  background-image: url(./basecamp-logo.png);
+  background-image: url(asset_path("basecamp-logo.png"));
   background-repeat: no-repeat;
   background-size: $logo-size $logo-size;
   height: $logo-size;

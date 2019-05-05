@@ -5,6 +5,15 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :user_to_organizations,
+  primary_key: :id,
+  foreign_key: :user_id,
+  class_name: :UserToOrganization
+
+  has_many :organizations,
+  through: :user_to_organizations,
+  source: :organization
+
   attr_reader :password
   def password=(password)
     @password = password
