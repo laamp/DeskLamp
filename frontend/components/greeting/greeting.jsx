@@ -9,7 +9,7 @@ const Greeting = ({ currentUser, signOut }) => {
     </nav>
   );
   const personalGreeting = () => (
-    <hgroup className="header-group">
+    <hgroup className="header-right">
       <h2 className="header-name">Hi, {currentUser.name}!</h2>
       <button className="header-button" onClick={signOut}>Sign Out</button>
     </hgroup>

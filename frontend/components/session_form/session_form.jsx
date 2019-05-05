@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
       name: "D. Hansson",
       password: "password"
     };
-    this.setState(guest);
+    this.props.processForm(guest);
   }
 
   handleSubmit(e) {
@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul class="login-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -85,10 +85,10 @@ class SessionForm extends React.Component {
           <button id="guest-signin-button" onClick={this.guestLogin}>
             <h3>
               Guest Log in
-            </h3>
+          </h3>
           </button>
-          <div id="break">
-            <p>Or, use my email address</p>
+          <div id="break-container">
+            <div id="break">Or, use my email address</div>
           </div>
         </>
       );
@@ -97,12 +97,17 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="signin-form-container">
+      <section className="signin-container">
+
         <div id="floating-logo"></div>
-        <form onSubmit={this.handleSubmit} className="signin-form-box">
+
+        <div className="signin-box">
+
           {this.formGreeting()}
           {this.guestButton()}
-          <div className="signin-form">
+
+          <form onSubmit={this.handleSubmit} className="signin-form">
+
             <div className="field">
               <label htmlFor="email">Email</label>
               <input type="text"
@@ -113,7 +118,9 @@ class SessionForm extends React.Component {
                 placeholder="e.g. your.email@email.com"
               />
             </div>
+
             {this.renderName()}
+
             <div className="field">
               <label htmlFor="password">Password</label>
               <input type="password"
@@ -123,11 +130,16 @@ class SessionForm extends React.Component {
                 id="password"
               />
             </div>
+
             <input className="session-submit" type="submit" value={this.formButton()} />
-            {this.renderErrors()}
-          </div>
-        </form>
-      </div>
+
+          </form>
+
+          {this.renderErrors()}
+
+        </div>
+
+      </section>
     );
   }
 }

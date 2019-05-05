@@ -7,4 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 guest = { email: "fake_email@desklamp.com", name: "D. Hansson", password: "password" }
-User.create(guest)
+user = User.create(guest)
+
+default_org = { name: "DeskLamp", description: "The default workspace" }
+org = Organization.create(default_org)
+
+guest_to_default_org = { user_id: user.id, organization_id: org.id, admin: true }
+UserToOrganization.create(guest_to_default_org)
