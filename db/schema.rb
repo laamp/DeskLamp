@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2019_05_05_031253) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_user_to_organizations_on_organization_id", unique: true
-    t.index ["user_id"], name: "index_user_to_organizations_on_user_id", unique: true
+    t.index ["organization_id"], name: "index_user_to_organizations_on_organization_id"
+    t.index ["user_id"], name: "index_user_to_organizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

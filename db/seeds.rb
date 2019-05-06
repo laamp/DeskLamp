@@ -6,11 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-guest = { email: "fake_email@desklamp.com", name: "D. Hansson", password: "password" }
-user = User.create(guest)
+guest_info = { email: "fake_email@desklamp.com", name: "D. Hansson", password: "password" }
+guest = User.create(guest_info)
 
-default_org = { name: "DeskLamp", description: "The default workspace" }
-org = Organization.create(default_org)
+user1_info = { email: "user1@desklamp.com", name: "User 1", password: "password" }
+user1 = User.create(user1_info)
 
-guest_to_default_org = { user_id: user.id, organization_id: org.id, admin: true }
+default_org_info = { name: "DeskLamp", description: "The default workspace" }
+default_org = Organization.create(default_org_info)
+
+other_org_info = { name: "BugLamp", description: "DeskLamp's competitor" }
+other_org = Organization.create(other_org_info)
+
+guest_to_default_org = { user_id: guest.id, organization_id: default_org.id, admin: true }
 UserToOrganization.create(guest_to_default_org)
+
+user1_to_default_org = { user_id: user1.id, organization_id: default_org.id, admin: false }
+UserToOrganization.create(user1_to_default_org)
+
+guest_to_other_org = { user_id: guest.id, organization_id: other_org.id, admin: true }
+UserToOrganization.create(guest_to_other_org)
