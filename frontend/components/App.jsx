@@ -10,6 +10,7 @@ const App = () => (
       <AuthRoute exact path="/signin" component={SignInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <Route exact path="/" component={SignUpFormContainer} />
+      {/* <Route path="/organization/:organization_id" component={} /> */}
     </Switch>
   </>
 );

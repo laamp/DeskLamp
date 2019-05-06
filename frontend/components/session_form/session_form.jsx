@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import GreetingContainer from '../greeting/greeting_container';
 
 class SessionForm extends React.Component {
@@ -8,7 +8,8 @@ class SessionForm extends React.Component {
     this.state = {
       email: "",
       name: "",
-      password: ""
+      password: "",
+      signedIn: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
@@ -26,7 +27,11 @@ class SessionForm extends React.Component {
       name: "D. Hansson",
       password: "password"
     };
-    this.props.processForm(guest);
+    this.props.processForm(guest).then(this.setState(() => {
+      return ({
+        signedIn: true
+      });
+    }));
   }
 
   handleSubmit(e) {
@@ -97,6 +102,10 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    if (this.state.signedIn === true) {
+      return (<Redirect to='/fakeplace' />);
+    }
+
     return (
       <>
         <header>
