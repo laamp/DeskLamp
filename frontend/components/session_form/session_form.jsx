@@ -8,8 +8,7 @@ class SessionForm extends React.Component {
     this.state = {
       email: "",
       name: "",
-      password: "",
-      signedIn: false
+      password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
@@ -27,11 +26,7 @@ class SessionForm extends React.Component {
       name: "D. Hansson",
       password: "password"
     };
-    this.props.processForm(guest).then(this.setState(() => {
-      return ({
-        signedIn: true
-      });
-    }));
+    this.props.processForm(guest);
   }
 
   handleSubmit(e) {
@@ -102,22 +97,8 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    if (this.state.signedIn === true) {
-      return (<Redirect to='/fakeplace' />);
-    }
-
     return (
       <>
-        <header>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <div className="header-left">
-              <div className="company-logo"></div>
-              <h1 id="company-h1">DeskLamp</h1>
-            </div>
-          </Link>
-          <GreetingContainer />
-        </header>
-
         <section className="signin-container">
           <div id="floating-logo"></div>
           <div className="signin-box">

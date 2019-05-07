@@ -1,0 +1,29 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export const SplashComponent = () => {
+  return (
+    <>
+      <header>
+        <div className="header-left">
+          <Link to='/'>
+            <div className="company-logo"></div>
+            <h1 id="company-name">DeskLamp</h1>
+          </Link>
+        </div>
+        <nav className="header-right">
+          <Link className='header-link' to='/signin'>Sign In</Link>
+          <Link id='sign-up-button' to='/signup'>Try It FREE</Link>
+        </nav>
+      </header>
+
+      <section className="about-section">
+        <img src="/assets/50-mil.jpg" />
+
+      </section>
+      <section className="testimonials-section"></section>
+      <section className="footer-section"></section>
+      <h1>DeskLamp Splash Page</h1>
+    </>
+  );
+};

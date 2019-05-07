@@ -8,15 +8,37 @@ header {
 }
 
 .header-left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  transition: all 0.2s ease;
   margin-right: 5px;
   height: 75px;
 }
 
-div.header-left h1 {
+.header-left a {
+  text-decoration: none;
+}
+
+.header-left a:hover {
+  color: black;
+}
+
+.header-left:hover {
+  transition: all 0.2s ease;
+  transform: scale(1.1);
+}
+
+.company-logo {
+  background-image: url(asset_path("basecamp-logo.png"));
+  background-repeat: no-repeat;
+  background-size: $logo-size $logo-size;
+  height: $logo-size;
+  width: $logo-size;
+  float: left;
+}
+
+.header-left h1 {
   margin-left: 10px;
+  float: right;
+  padding-top: 17px;
 }
 
 .header-right {
@@ -42,4 +64,9 @@ header a {
   padding: 12px 20px 9px 20px;
   border-radius: 3em;
   text-decoration: none;
+}
+
+#sign-up-button:hover {
+  transition: all 0.2s ease;
+  background-color: $bc-green;
 }
