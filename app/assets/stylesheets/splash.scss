@@ -1,0 +1,27 @@
+@import "variables";
+
+.splash-content {
+  box-sizing: border-box;
+}
+
+.about-section-container {
+  background-color: white;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.about-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  font-size: 1.6vw;
+}
+
+.about-section img {
+  width: 100%;
+}
+
+.about-section p strong {
+  font-weight: bold;
+}

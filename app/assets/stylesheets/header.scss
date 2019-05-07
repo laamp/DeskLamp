@@ -5,6 +5,9 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-left {
@@ -27,11 +30,8 @@ header {
 }
 
 .company-logo {
-  background-image: url(asset_path("basecamp-logo.png"));
-  background-repeat: no-repeat;
-  background-size: $logo-size $logo-size;
-  height: $logo-size;
-  width: $logo-size;
+  width: 10%;
+  height: calc(width * 1.2);
   float: left;
 }
 
@@ -39,6 +39,7 @@ header {
   margin-left: 10px;
   float: right;
   padding-top: 17px;
+  font-size: 2.4vw;
 }
 
 .header-right {
@@ -53,7 +54,7 @@ header {
 }
 
 header a {
-  font-size: 16px;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 
