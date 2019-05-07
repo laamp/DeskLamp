@@ -7,8 +7,10 @@ export const SplashComponent = () => {
       <header>
         <div className="header-left">
           <Link to='/'>
-            <img className="company-logo" src="/assets/basecamp-logo.png" />
-            <h1 id="company-name">DeskLamp</h1>
+            <h1 id="company-name">
+              <img className="company-logo" src="/assets/basecamp-logo.png" />
+              DeskLamp
+            </h1>
           </Link>
         </div>
         <nav className="header-right">
@@ -25,13 +27,13 @@ export const SplashComponent = () => {
                 <p>
                   <strong>
                     That’s the number of projects that have been managed with Basecamp.&nbsp;
-              </strong>
+                  </strong>
                   Companies trust Basecamp because it’s *the* gold-standard for managing
                   projects, working with clients, and communicating with your team.
                   Don’t settle for imitators and also-rans.
                   If you want to finish projects faster with less chaos and confusion,
                   there’s only Basecamp.
-            </p>
+                </p>
               </div>
               <div className="signup-text">
                 <p>3,089 businesses signed up in the last week. Join them! Try Basecamp</p>
@@ -110,8 +112,8 @@ export const SplashComponent = () => {
               <strong>GitHub: </strong>
               <a href="https://github.com/laamp/DeskLamp">This project.</a>
             </li>
+            <p>Copyright 2019, Enjoy your day!</p>
           </ul>
-          <p>Copyright 2019, Enjoy your day!</p>
           <img src="/assets/footer-graph.svg" />
         </section>
       </section>

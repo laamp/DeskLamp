@@ -2,6 +2,8 @@
 
 .splash-content {
   box-sizing: border-box;
+  padding-top: 5vw;
+  line-height: 2vw;
 }
 
 .about-section-container {
@@ -24,4 +26,140 @@
 
 .about-section p strong {
   font-weight: bold;
+}
+
+.about-signup-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.about-text {
+  width: 60%;
+  margin-right: 10px;
+  padding-right: 15px;
+}
+
+.signup-text {
+  width: 40%;
+  margin-left: 10px;
+  background-color: #eaf9ec;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+}
+
+.signup-text p {
+  font-weight: bold;
+  line-height: 2em;
+}
+
+.signup-text a {
+  display: inline-block;
+  margin-top: 7%;
+  font-weight: bold;
+  background-color: $bc-green;
+  color: white;
+  border-radius: 3em;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.signup-text a:visited {
+  color: white;
+}
+
+.signup-text a:hover {
+  background-color: black;
+  transition: all 0.2s ease;
+}
+
+/* testimonials section */
+
+.testimonials-section {
+  padding: 30px 0;
+  background-color: $splash-bg-color;
+}
+
+.about-list-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 0 auto;
+  padding: 25px 35px;
+}
+
+.about-list-container img {
+  width: 45%;
+  object-fit: contain;
+}
+
+.about-list {
+  width: 55%;
+  list-style-type: disc;
+  font-weight: bold;
+  font-size: 2vw;
+  line-height: 1.5em;
+  padding-left: 5%;
+  margin: auto 0;
+}
+
+.green-divider {
+  border: 2px solid $bc-green;
+  width: 80%;
+}
+
+
+.review-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.review-container blockquote {
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: 1.2vw;
+  width: 33%;
+  padding: 30px;
+}
+
+.review-container span {
+  border-radius: 1em 0 1em 0;
+  background-image: linear-gradient(-100deg, rgba(250, 247, 133, 0.3), rgba(250, 247, 133, 0.7) 95%, rgba(250, 247, 133, 0.1));
+}
+
+.review-container span:before {
+  content: ' ';
+}
+
+.review-container span:after {
+  content: ' ';
+}
+
+.review-container cite {
+  font-weight: bold;
+}
+
+/* footer section */
+
+.footer-section {
+  background-color: white;
+}
+
+.footer-list {
+  position: relative;
+  top: 200px;
+  left: 200px;
+  line-height: 1.5em;
+}
+
+.footer-list strong {
+  font-weight: bold;
+}
+
+.footer-section p {
+  font-style: italic;
 }
