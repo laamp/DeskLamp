@@ -10,6 +10,12 @@ class Api::OrganizationsController < ApplicationController
     end
   end
 
+  def index
+    @organizations = current_user.organizations
+
+    render :index
+  end
+
   def new
     @organization = Organization.new
   end

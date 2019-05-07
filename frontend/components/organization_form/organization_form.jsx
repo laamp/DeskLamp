@@ -1,6 +1,11 @@
 import React from 'react';
 
 class OrganizationForm extends React.Component {
+  componentDidMount() {
+    this.props.requestUserOrgs();
+    console.log(this.props);
+  }
+
   render() {
     return (
       <>
