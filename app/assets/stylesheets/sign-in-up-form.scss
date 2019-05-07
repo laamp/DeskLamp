@@ -1,5 +1,11 @@
 @import "variables";
 
+#floating-logo {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 100px;
+}
+
 .signin-container {
   max-width: 1000px;
   margin: 20px auto;
@@ -16,11 +22,23 @@
   display: flex;
   flex-direction: column;
   max-width: 380px;
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 1px 3px 0 #bfbfbf;
   padding: 30px;
+  position: relative;
+}
+
+.signin-box:before {
+  content: "";
+  border-style: solid;
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  margin-left: -10px;
 }
 
 .signin-form {

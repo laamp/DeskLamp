@@ -100,7 +100,7 @@ class SessionForm extends React.Component {
     return (
       <>
         <section className="signin-container">
-          <div id="floating-logo"></div>
+          <img id="floating-logo" src="/assets/basecamp-logo.png" />
           <div className="signin-box">
             {this.formGreeting()}
             {this.guestButton()}
