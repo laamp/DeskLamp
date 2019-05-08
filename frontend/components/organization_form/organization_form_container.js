@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
 import { createOrganization, requestAllOrganizations } from '../../actions/organization_actions';
+import { signOut } from '../../actions/session_actions';
 import OrganizationForm from './organization_form';
 
 const mapStateToProps = state => {
   return ({
     errors: state.errors,
-    organizations: state.organizations
+    organizations: state.entities.organizations
   });
 };
 
 const mapDispatchToProps = dispatch => {
   return ({
     createOrganization: organization => dispatch(createOrganization(organization)),
-    requestUserOrgs: () => dispatch(requestAllOrganizations())
+    requestUserOrgs: () => dispatch(requestAllOrganizations()),
+    signOut: () => dispatch(signOut())
   });
 };
 
