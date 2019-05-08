@@ -15,7 +15,7 @@ const organizationsReducer = (oldState = {}, action) => {
         { [action.organization.id]: action.organization }
       );
     case RECEIVE_ALL_ORGANIZATIONS:
-      return Object.assign({}, oldState, action.organizations);
+      return Object.assign({}, action.organizations);
     default:
       return oldState;
   }
