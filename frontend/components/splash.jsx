@@ -8,7 +8,7 @@ export const SplashComponent = () => {
         <div className="header-left">
           <Link to='/'>
             <h1 id="company-name">
-              <img className="company-logo" src="/assets/basecamp-logo.png" />
+              <img className="company-logo" src={window.basecampLogoUrl} />
               DeskLamp
             </h1>
           </Link>
@@ -21,7 +21,7 @@ export const SplashComponent = () => {
       <section className="splash-content">
         <section className="about-section-container">
           <section className="about-section">
-            <img src="/assets/50-mil.jpg" />
+            <img src={window.fiftyMilUrl} />
             <div className="about-signup-container">
               <div className="about-text">
                 <p>
@@ -44,7 +44,7 @@ export const SplashComponent = () => {
         </section>
         <section className="testimonials-section">
           <div className="about-list-container">
-            <img src="/assets/laptop.png" />
+            <img src={window.laptopUrl} />
             <ul className="about-list">
               <li>Track, assign, and chart to-dos.</li>
               <li>Centralize discussions and feedback.</li>
@@ -114,7 +114,7 @@ export const SplashComponent = () => {
             </li>
             <p>Copyright 2019, Enjoy your day!</p>
           </ul>
-          <img src="/assets/footer-graph.svg" />
+          <img src={window.footerGraphUrl} />
         </section>
       </section>
     </>

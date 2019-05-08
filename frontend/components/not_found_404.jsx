@@ -8,7 +8,7 @@ const NotFound = () => {
         <div className="header-left">
           <Link to='/'>
             <h1 id="company-name">
-              <img className="company-logo" src="/assets/basecamp-logo.png" />
+              <img className="company-logo" src={window.basecampLogoUrl} />
               DeskLamp
             </h1>
           </Link>
@@ -49,7 +49,7 @@ const NotFound = () => {
           </li>
           <p>Copyright 2019, Enjoy your day!</p>
         </ul>
-        <img src="/assets/footer-graph.svg" />
+        <img src={window.footerGraphUrl} />
       </section>
     </>
   );

@@ -14,7 +14,7 @@ class OrganizationForm extends React.Component {
         <header>
           <div>
             <h1>
-              <img src="/assets/blank-logo.png" alt="DeskLamp" />
+              <img src={window.blankLogoUrl} alt="DeskLamp" />
               <strong>DeskLamp&nbsp;</strong>Launchpad
             </h1>
           </div>
@@ -34,7 +34,7 @@ class OrganizationForm extends React.Component {
                 {Object.values(organizations).map(
                   org => <li key={org.id}>
                     <Link to={`/organizations/${org.id}`}>
-                      <img src="assets/basecamp-logo.png" />
+                      <img src={window.basecampLogoUrl} />
                       <h2>{org.name}</h2>
                     </Link>
                   </li>
