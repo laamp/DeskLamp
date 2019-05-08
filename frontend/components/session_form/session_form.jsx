@@ -1,6 +1,5 @@
 import React from 'react';
-import { withRouter, Link, Redirect } from 'react-router-dom';
-import GreetingContainer from '../greeting/greeting_container';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -12,6 +11,10 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   update(field) {

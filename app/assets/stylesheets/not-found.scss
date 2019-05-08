@@ -1,0 +1,51 @@
+@import 'variables';
+
+.notfound-container {
+  padding: 38vh 0;
+  box-sizing: border-box;
+  background-color: white;
+  color: $bc-black;
+  line-height: 2vw;
+}
+
+.notfound {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.notfound-sorrymessage {
+  font-size: 2.4vw;
+  line-height: 2.8vw;
+  padding-right: 20px;
+}
+
+.notfound-sorrymessage h6 {
+  font-weight: bold;
+  font-size: 4.3vw;
+  line-height: 4.5vw;
+  padding-bottom: 15px;
+}
+
+.notfound-directions {
+  font-size: 1.4vw;
+  line-height: 2.2vw;
+  padding-left: 35px;
+}
+
+.notfound-directions a {
+  color: $bc-green;
+}
+
+.notfound-directions a:visited {
+  color: $bc-green;
+}
+
+.notfound-directions a:hover {
+  color: $bc-black;
+}
+
+.notfound-directions strong {
+  font-weight: bold;
+}
