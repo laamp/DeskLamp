@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-
+    # make transaction here for creating user, org, and joins records
     if @user.save
       login(@user)
       render json: @user
