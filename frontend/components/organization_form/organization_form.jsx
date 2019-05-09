@@ -34,14 +34,14 @@ class OrganizationForm extends React.Component {
     });
   }
 
-  // signOutSubmit(e) {
-  //   e.preventDefault();
-  //   this.props.signOut().then(() => {
-  //     return (
-  //       <Redirect to='/' />
-  //     );
-  //   });
-  // }
+  signOutSubmit(e) {
+    e.preventDefault();
+    this.props.signOut().then(() => {
+      return (
+        <Redirect to='/' />
+      );
+    });
+  }
 
   hasOrganizationsSection(organizations) {
     return (
@@ -114,7 +114,7 @@ class OrganizationForm extends React.Component {
             <Link to='/signin' title={this.props.currentUser.name}>
               <i className="material-icons">account_circle</i>
             </Link>
-            {/* <button onClick={this.props.signOut}>Log out</button> */}
+            <button onClick={this.props.signOut}>Log out</button>
           </div>
         </section>
 

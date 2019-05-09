@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect, Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -110,6 +110,9 @@ class SessionForm extends React.Component {
           <img id="floating-logo" src={window.basecampLogoUrl} />
           <div className="signin-box">
             {this.formGreeting()}
+            {this.props.formType === 'signin' ?
+              <Link className='sign-in-up-toggle' to="/signup">Sign up page</Link> :
+              <Link className='sign-in-up-toggle' to="/signin">Sign in page</Link>}
             {this.guestButton()}
             <form onSubmit={this.handleSubmit} className="signin-form">
               <div className="field">
