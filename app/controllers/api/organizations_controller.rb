@@ -1,13 +1,23 @@
 class Api::OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
-
-    if @organization.save
+    
+    ActiveRecord::Base.transaction do
+      # update their job title
+      current_user.job_title = params[:organization][:jobTitle]
+      current_user.save
+      # create organization
+      @organization.save
       
+      # create user to org record for joins table
+      joins_info = { user_id: current_user.id, organization_id: @organization.id, admin: true }
+      @user_to_org = UserToOrganization.new(joins_info)
+      @user_to_org.save
       render json: @organization
-    else
-      render json: @organization.errors.full_messages, status: 422
+      return
     end
+
+      render json: @organization.errors.full_messages, status: 422
   end
 
   def index

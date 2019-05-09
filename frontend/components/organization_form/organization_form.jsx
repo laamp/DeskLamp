@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 
 class OrganizationForm extends React.Component {
 
@@ -7,9 +7,10 @@ class OrganizationForm extends React.Component {
     super(props);
     this.state = {
       jobTitle: '',
-      orgName: ''
+      name: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.signOutSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -18,14 +19,29 @@ class OrganizationForm extends React.Component {
 
   update(field) {
     return e => this.setState({
-      [field]: e.target.value
+      [field]: e.currentTarget.value
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     //bookmark
+    const organization = Object.assign({}, this.state);
+    this.props.createOrganization(organization).then(org => {
+      return (
+        <Redirect to={`/organizations/${org.id}`} />
+      );
+    });
   }
+
+  // signOutSubmit(e) {
+  //   e.preventDefault();
+  //   this.props.signOut().then(() => {
+  //     return (
+  //       <Redirect to='/' />
+  //     );
+  //   });
+  // }
 
   hasOrganizationsSection(organizations) {
     return (
@@ -70,12 +86,12 @@ class OrganizationForm extends React.Component {
               className="signin-input"
               placeholder="e.g. Google, Inc."
               value={this.state.orgName}
-              onChange={this.update('orgName')}
+              onChange={this.update('name')}
             />
           </div>
           <input className='session-submit'
             type='submit'
-            value='Create Organization'
+            value='Create Company'
           />
         </form>
       </>
@@ -98,7 +114,7 @@ class OrganizationForm extends React.Component {
             <Link to='/signin' title={this.props.currentUser.name}>
               <i className="material-icons">account_circle</i>
             </Link>
-            <button onClick={this.props.signOut}>Log out</button>
+            {/* <button onClick={this.props.signOut}>Log out</button> */}
           </div>
         </section>
 

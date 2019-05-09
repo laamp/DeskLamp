@@ -39,10 +39,10 @@ export const requestOrganization = id => dispatch => {
   );
 };
 
-export const createOrganization = () => dispatch => {
+export const createOrganization = organization => dispatch => {
   return (
     APIUtil.createOrganization(organization)
-      .then(orgs => dispatch(receiveAllOrganizations(orgs)))
+      .then(org => dispatch(receiveOrganization(org)))
       .fail(errors => dispatch(receiveOrganizationErrors(errors.responseJSON)))
   );
 };

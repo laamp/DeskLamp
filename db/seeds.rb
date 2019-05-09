@@ -26,3 +26,6 @@ UserToOrganization.create(user1_to_default_org)
 
 guest_to_other_org = { user_id: guest.id, organization_id: other_org.id, admin: true }
 UserToOrganization.create(guest_to_other_org)
+
+hub_info = { name: "DeskLamp Home", description: "Main hub for DeskLamp", organization_id: default_org.id, hub_type: "company" }
+Hub.create(hub_info)

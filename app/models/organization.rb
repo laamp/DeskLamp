@@ -9,4 +9,9 @@ class Organization < ApplicationRecord
   has_many :users,
   through: :user_to_organizations,
   source: :user
+
+  has_many :hubs,
+  primary_key: :id,
+  foreign_key: :organization_id,
+  class_name: :Hub
 end
