@@ -6,7 +6,8 @@ import OrganizationForm from './organization_form';
 const mapStateToProps = state => {
   return ({
     errors: state.errors,
-    organizations: state.entities.organizations
+    organizations: state.entities.organizations,
+    currentUser: state.entities.users[state.session.id]
   });
 };
 
