@@ -9,8 +9,8 @@ const receiveHubs = hubs => {
   });
 };
 
-export const getHubs = () => dispatch => {
+export const getHubs = orgId => dispatch => {
   return (
-    APIUtil.getHubs().then(hubs => dispatch(receiveHubs(hubs)))
+    APIUtil.getHubs(orgId).then(hubs => dispatch(receiveHubs(hubs)))
   );
 };

@@ -118,7 +118,6 @@ class OrganizationForm extends React.Component {
             <button onClick={this.props.signOut}>Log out</button>
           </div>
         </section>
-        {/* should render here */}
         {Object.entries(organizations).length === 0 ?
           this.createOrganizationForm() :
           this.hasOrganizationsSection(organizations)

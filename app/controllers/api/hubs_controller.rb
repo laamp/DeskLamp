@@ -14,7 +14,7 @@ class Api::HubsController < ApplicationController
   end
 
   def index
-    @hubs = current_user.hubs
+    @hubs = Organization.find(params[:orgId]).hubs
     
     render :index
   end

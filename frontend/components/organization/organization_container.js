@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
   return ({
     //get users
     //get hubs
-    getHubs: () => dispatch(getHubs()),
+    getHubs: orgId => dispatch(getHubs(orgId)),
     signOut: () => dispatch(signOut())
   });
 };

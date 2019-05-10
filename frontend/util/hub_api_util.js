@@ -1,8 +1,9 @@
-export const getHubs = () => {
+export const getHubs = orgId => {
   return (
     $.ajax({
       method: 'GET',
-      url: 'api/hubs'
+      url: 'api/hubs',
+      data: { orgId }
     })
   );
 };

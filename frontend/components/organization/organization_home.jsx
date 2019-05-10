@@ -3,21 +3,34 @@ import { Link, withRouter } from 'react-router-dom';
 
 class OrganizationHome extends React.Component {
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.props.getHubs(this.props.match.params.organizationId);
   }
 
-  componentDidMount() {
-    this.props.getHubs();
+  orgViewHeader() {
+    return (
+      <header className="org-view-header">
+        <div className="left-header-item">
+          <img src={window.basecampLogoUrl} alt="Organizations" draggable='false' />
+        </div>
+        <div className="center-header-item">
+          <nav className="nav-items">
+            <div id="home-button">Home</div>
+            <div id="signout-button">Log out</div>
+          </nav>
+        </div>
+        <div className="right-header-item">
+          <i className="material-icons">account_circle</i>
+        </div>
+      </header>
+    );
   }
 
   render() {
     const { hubs } = this.props;
-
     return (
       <>
-        <h1>organization view</h1>
-
+        {this.orgViewHeader()}
         <ul>
           {Object.values(hubs).map(
             hub => <li key={hub.id}>
