@@ -33,45 +33,45 @@ class OrganizationHome extends React.Component {
 
         <section className='hubs-wrapper'>
           <div className='hubs-container'>
-            <div className='hub-divider'>Company</div>
-            <ul>
+            <div className='hub-divider'><div>Company</div></div>
+            <ul className='hubs-list'>
               {Object.values(this.props.hubs).map(hub => {
                 if (hub.hubType === 'company') {
                   return (
-                    <li key={hub.id}>
+                    <li className='hub-tile' key={hub.id}>
                       <Link to={`/hubs/${hub.id}`}>
                         <h2>{hub.name}</h2>
-                        <h2>{hub.description}</h2>
+                        <h3>{hub.description}</h3>
                       </Link>
                     </li>
                   );
                 }
               })}
             </ul>
-            <div className='hub-divider'>Team</div>
-            <ul>
+            <div className='hub-divider'><div>Team</div></div>
+            <ul className='hubs-list'>
               {Object.values(this.props.hubs).map(hub => {
                 if (hub.hubType === 'team') {
                   return (
-                    <li key={hub.id}>
+                    <li className='hub-tile' key={hub.id}>
                       <Link to={`/hubs/${hub.id}`}>
                         <h2>{hub.name}</h2>
-                        <h2>{hub.description}</h2>
+                        <h3>{hub.description}</h3>
                       </Link>
                     </li>
                   );
                 }
               })}
             </ul>
-            <div className='hub-divider'>Project</div>
-            <ul>
+            <div className='hub-divider'><div>Project</div></div>
+            <ul className='hubs-list'>
               {Object.values(this.props.hubs).map(hub => {
                 if (hub.hubType === 'project') {
                   return (
-                    <li key={hub.id}>
+                    <li className='hub-tile' key={hub.id}>
                       <Link to={`/hubs/${hub.id}`}>
                         <h2>{hub.name}</h2>
-                        <h2>{hub.description}</h2>
+                        <h3>{hub.description}</h3>
                       </Link>
                     </li>
                   );
