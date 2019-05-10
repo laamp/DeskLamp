@@ -27,20 +27,59 @@ class OrganizationHome extends React.Component {
   }
 
   render() {
-    const { hubs } = this.props;
     return (
       <>
         {this.orgViewHeader()}
-        <ul>
-          {Object.values(hubs).map(
-            hub => <li key={hub.id}>
-              <Link to={`/hubs/${hub.id}`}>
-                <h2>{hub.name}</h2>
-                <h2>{hub.description}</h2>
-              </Link>
-            </li>
-          )}
-        </ul>
+
+        <section className='hubs-wrapper'>
+          <div className='hubs-container'>
+            <div className='hub-divider'>Company</div>
+            <ul>
+              {Object.values(this.props.hubs).map(hub => {
+                if (hub.hubType === 'company') {
+                  return (
+                    <li key={hub.id}>
+                      <Link to={`/hubs/${hub.id}`}>
+                        <h2>{hub.name}</h2>
+                        <h2>{hub.description}</h2>
+                      </Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+            <div className='hub-divider'>Team</div>
+            <ul>
+              {Object.values(this.props.hubs).map(hub => {
+                if (hub.hubType === 'team') {
+                  return (
+                    <li key={hub.id}>
+                      <Link to={`/hubs/${hub.id}`}>
+                        <h2>{hub.name}</h2>
+                        <h2>{hub.description}</h2>
+                      </Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+            <div className='hub-divider'>Project</div>
+            <ul>
+              {Object.values(this.props.hubs).map(hub => {
+                if (hub.hubType === 'project') {
+                  return (
+                    <li key={hub.id}>
+                      <Link to={`/hubs/${hub.id}`}>
+                        <h2>{hub.name}</h2>
+                        <h2>{hub.description}</h2>
+                      </Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+        </section>
       </>
     );
   }
