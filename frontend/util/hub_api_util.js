@@ -7,5 +7,3 @@ export const getHubs = orgId => {
     })
   );
 };
-
-window.getHubs = getHubs;

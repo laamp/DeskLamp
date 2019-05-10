@@ -60,6 +60,3 @@ export const signOut = () => dispatch => {
       )
   );
 };
-
-/* FOR TESTING */
-window.signOut = signOut;
