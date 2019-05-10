@@ -3,8 +3,16 @@ import { Link, withRouter } from 'react-router-dom';
 
 class OrganizationHome extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    };
+  }
+
   componentDidMount() {
-    this.props.getHubs(this.props.match.params.organizationId);
+    this.props.getHubs(this.props.match.params.organizationId)
+      .then(() => (this.setState({ loading: false })));
   }
 
   orgViewHeader() {
@@ -26,7 +34,31 @@ class OrganizationHome extends React.Component {
     );
   }
 
+  renderHubs(hubtype) {
+    return (
+      <>
+        <div className='hub-divider'><div>{hubtype}</div></div>
+        <ul className='hubs-list'>
+          {Object.values(this.props.hubs).map(hub => {
+            if (hub.hubType === 'company') {
+              return (
+                <li className='hub-tile' key={hub.id}>
+                  <Link to={`/hubs/${hub.id}`}>
+                    <h2>{hub.name}</h2>
+                    <h3>{hub.description}</h3>
+                  </Link>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </>
+    );
+  }
+
   render() {
+    if (this.state.loading) return null;
+
     return (
       <>
         {this.orgViewHeader()}
