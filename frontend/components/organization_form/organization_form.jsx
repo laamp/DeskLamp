@@ -11,10 +11,12 @@ class OrganizationForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.signOutSubmit = this.handleSubmit.bind(this);
+
+    this.shouldRender = false;
   }
 
   componentDidMount() {
-    this.props.requestUserOrgs();
+    this.props.requestUserOrgs().then(this.shouldRender = true);
   }
 
   update(field) {
@@ -99,7 +101,7 @@ class OrganizationForm extends React.Component {
 
   render() {
     const { organizations } = this.props;
-
+    if (!this.shouldRender) return (<></>);
     return (
       <>
         <section className="launchpad-header">
@@ -116,7 +118,7 @@ class OrganizationForm extends React.Component {
             <button onClick={this.props.signOut}>Log out</button>
           </div>
         </section>
-
+        {/* should render here */}
         {Object.entries(organizations).length === 0 ?
           this.createOrganizationForm() :
           this.hasOrganizationsSection(organizations)
