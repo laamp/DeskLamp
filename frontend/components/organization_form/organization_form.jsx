@@ -25,7 +25,6 @@ class OrganizationForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    //bookmark
     const organization = Object.assign({}, this.state);
     this.props.createOrganization(organization).then(org => {
       return (

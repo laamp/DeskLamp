@@ -14,7 +14,9 @@ class Api::HubsController < ApplicationController
   end
 
   def index
-
+    @hubs = current_user.hubs
+    
+    render :index
   end
 
   def show

@@ -14,6 +14,10 @@ class User < ApplicationRecord
   through: :user_to_organizations,
   source: :organization
 
+  has_many :hubs,
+  through: :organizations,
+  source: :hubs
+
   attr_reader :password
   def password=(password)
     @password = password

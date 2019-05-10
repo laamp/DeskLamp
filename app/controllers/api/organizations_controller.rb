@@ -6,13 +6,22 @@ class Api::OrganizationsController < ApplicationController
       # update their job title
       current_user.job_title = params[:organization][:jobTitle]
       current_user.save
+
       # create organization
       @organization.save
       
+      # create default company hub for new organization
+      hub_desc = "Default workspace for " + @organization.name
+      hub_info = { name: @organization.name, description: hub_desc,
+        organization_id: @organization.id, hub_type: "company" }
+      @hub = Hub.new(hub_info)
+      @hub.save
+
       # create user to org record for joins table
       joins_info = { user_id: current_user.id, organization_id: @organization.id, admin: true }
       @user_to_org = UserToOrganization.new(joins_info)
       @user_to_org.save
+
       render json: @organization
       return
     end
