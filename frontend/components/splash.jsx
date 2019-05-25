@@ -1,23 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HeaderComponent } from "./header";
 
 export const SplashComponent = () => {
   return (
     <>
-      <header>
-        <div className="header-left">
-          <Link to='/'>
-            <h1 id="company-name">
-              <img className="company-logo" src={window.basecampLogoUrl} />
-              DeskLamp
-            </h1>
-          </Link>
-        </div>
-        <nav className="header-right">
-          <Link className='header-link' to='/signin'>Sign In</Link>
-          <Link id='sign-up-button' to='/signup'>Try It FREE</Link>
-        </nav>
-      </header>
+      <HeaderComponent />
       <section className="splash-content">
         <section className="about-section-container">
           <section className="about-section">
