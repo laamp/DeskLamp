@@ -57,22 +57,25 @@
   position: relative;
   text-align: center;
   margin: 5px 0;
-}
+  z-index: 1;
 
-#break {
-  display: inline-block;
-  padding: 0 0.5em;
-  margin: 0 auto;
-}
+  &:before {
+    border-top: 1px solid #d9d9d9;
+    content: "";
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+  }
 
-#break-container:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid #d9d9d9;
-  z-index: -1;
+  span {
+    background: white;
+    padding: 0 5px;
+  }
 }
 
 .field {

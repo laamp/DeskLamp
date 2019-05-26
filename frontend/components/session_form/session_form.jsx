@@ -96,7 +96,7 @@ class SessionForm extends React.Component {
           </h3>
           </button>
           <div id="break-container">
-            <div id="break">Or, use my email address</div>
+            <span>Or, use my email address</span>
           </div>
         </>
       );
