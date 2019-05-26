@@ -6,7 +6,9 @@ export const HeaderComponent = () => {
     <header>
       <div className="header-left">
         <Link to='/'>
-          <img className="company-logo" src={window.basecampLogoUrl} />
+          <div>
+            <img className="company-logo" src={window.basecampLogoUrl} />
+          </div>
           <h1 id="company-name">DeskLamp</h1>
         </Link>
       </div>

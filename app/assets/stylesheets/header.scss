@@ -17,12 +17,18 @@ header {
 .header-left {
   transition: all 0.2s ease;
   width: 19%;
-  height: 100%;
-  padding: 5px 0;
 }
 
 .header-left a {
   text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+.header-left a div {
+  height: inherit;
 }
 
 .header-left a:hover {
@@ -35,18 +41,12 @@ header {
 }
 
 .company-logo {
-  width: 27%;
-  float: left;
-  padding-top: 10%;
-  left: 10%;
-  position: relative;
-  transform: translateX(-50%) translateY(-50%);
+  height: 100%;
 }
 
 .header-left h1 {
-  margin-left: 10px;
-  float: left;
-  padding-top: .6vw;
+  margin-left: 5px;
+  align-self: center;
   font-size: 2.4vw;
 }
 
