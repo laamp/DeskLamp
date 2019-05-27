@@ -15,6 +15,10 @@ class OrganizationHome extends React.Component {
       .then(() => (this.setState({ loading: false })));
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   orgViewHeader() {
     return (
       <header className="org-view-header">
@@ -56,12 +60,25 @@ class OrganizationHome extends React.Component {
     );
   }
 
+  renderErrors() {
+    return (
+      <ul className="org-errors">
+        {this.props.errors.map((error, i) => (
+          <li key={i}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     if (this.state.loading) return null;
 
     return (
       <>
         {this.orgViewHeader()}
+        {this.renderErrors()}
 
         <section className='hubs-wrapper'>
           <div className='hubs-container'>

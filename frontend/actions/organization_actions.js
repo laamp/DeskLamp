@@ -18,7 +18,7 @@ const receiveOrganization = organization => {
   });
 };
 
-const receiveOrganizationErrors = errors => {
+export const receiveOrganizationErrors = errors => {
   return ({
     type: RECEIVE_ORGANIZATION_ERRORS,
     errors: errors

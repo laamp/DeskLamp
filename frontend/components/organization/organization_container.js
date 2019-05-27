@@ -7,14 +7,13 @@ import OrganizationHome from './organization_home';
 const mapStateToProps = (state, { match }) => {
   return ({
     currentOrganization: state.entities.organizations[match.params.organizationId],
-    hubs: state.entities.hubs
+    hubs: state.entities.hubs,
+    errors: state.errors.organizations
   });
 };
 
 const mapDispatchToProps = dispatch => {
   return ({
-    //get users
-    //get hubs
     getHubs: orgId => dispatch(getHubs(orgId)),
     signOut: () => dispatch(signOut())
   });
