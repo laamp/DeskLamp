@@ -10,9 +10,14 @@ class OrganizationHome extends React.Component {
     };
   }
 
+  componentDidUpdate() {
+    this.props.clearErrors();
+  }
+
   componentDidMount() {
     this.props.getHubs(this.props.match.params.organizationId)
-      .then(() => (this.setState({ loading: false })));
+      .then(() => (this.setState({ loading: false })))
+      .fail(() => (this.setState({ loading: false })));
   }
 
   componentWillUnmount() {
@@ -44,7 +49,7 @@ class OrganizationHome extends React.Component {
         <div className='hub-divider'><div>{hubtype}</div></div>
         <ul className='hubs-list'>
           {Object.values(this.props.hubs).map(hub => {
-            if (hub.hubType === 'company') {
+            if (hub.hubType === hubtype) {
               return (
                 <li className='hub-tile' key={hub.id}>
                   <Link to={`/hubs/${hub.id}`}>
@@ -82,51 +87,9 @@ class OrganizationHome extends React.Component {
 
         <section className='hubs-wrapper'>
           <div className='hubs-container'>
-            <div className='hub-divider'><div>Company</div></div>
-            <ul className='hubs-list'>
-              {Object.values(this.props.hubs).map(hub => {
-                if (hub.hubType === 'company') {
-                  return (
-                    <li className='hub-tile' key={hub.id}>
-                      <Link to={`/hubs/${hub.id}`}>
-                        <h2>{hub.name}</h2>
-                        <h3>{hub.description}</h3>
-                      </Link>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
-            <div className='hub-divider'><div>Team</div></div>
-            <ul className='hubs-list'>
-              {Object.values(this.props.hubs).map(hub => {
-                if (hub.hubType === 'team') {
-                  return (
-                    <li className='hub-tile' key={hub.id}>
-                      <Link to={`/hubs/${hub.id}`}>
-                        <h2>{hub.name}</h2>
-                        <h3>{hub.description}</h3>
-                      </Link>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
-            <div className='hub-divider'><div>Project</div></div>
-            <ul className='hubs-list'>
-              {Object.values(this.props.hubs).map(hub => {
-                if (hub.hubType === 'project') {
-                  return (
-                    <li className='hub-tile' key={hub.id}>
-                      <Link to={`/hubs/${hub.id}`}>
-                        <h2>{hub.name}</h2>
-                        <h3>{hub.description}</h3>
-                      </Link>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
+            {this.renderHubs("company")}
+            {this.renderHubs("team")}
+            {this.renderHubs("project")}
           </div>
         </section>
       </>
