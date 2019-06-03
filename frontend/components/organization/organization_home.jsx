@@ -8,6 +8,7 @@ class OrganizationHome extends React.Component {
     this.state = {
       loading: true
     };
+    window.currentOrganization = this.props.currentOrganization;
   }
 
   componentDidUpdate() {
@@ -46,7 +47,9 @@ class OrganizationHome extends React.Component {
   renderHubs(hubtype) {
     return (
       <>
-        <div className='hub-divider'><div>{hubtype}</div></div>
+        <div className='hub-divider'>
+          {/* <div>{hubtype == "company" ? this.props.currentOrganization : hubtype}</div> */}
+        </div>
         <ul className='hubs-list'>
           {Object.values(this.props.hubs).map(hub => {
             if (hub.hubType === hubtype) {
