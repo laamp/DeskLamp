@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_183810) do
+ActiveRecord::Schema.define(version: 2019_06_10_200924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.text "notes", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "schedule_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_events_on_author_id"
+    t.index ["schedule_id"], name: "index_events_on_schedule_id"
+  end
 
   create_table "hubs", force: :cascade do |t|
     t.string "name", null: false
@@ -25,12 +37,69 @@ ActiveRecord::Schema.define(version: 2019_05_09_183810) do
     t.index ["organization_id"], name: "index_hubs_on_organization_id"
   end
 
+  create_table "message_board_posts", force: :cascade do |t|
+    t.string "category"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "author_id", null: false
+    t.integer "message_board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_message_board_posts_on_author_id"
+    t.index ["message_board_id"], name: "index_message_board_posts_on_message_board_id"
+  end
+
+  create_table "message_boards", force: :cascade do |t|
+    t.integer "hub_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_message_boards_on_hub_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "hub_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_schedules_on_hub_id"
+  end
+
+  create_table "todo_list_collections", force: :cascade do |t|
+    t.integer "hub_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_todo_list_collections_on_hub_id"
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "details"
+    t.integer "todo_collection_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_collection_id"], name: "index_todo_lists_on_todo_collection_id"
+  end
+
+  create_table "todo_tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "done", default: false, null: false
+    t.integer "assignee_id", null: false
+    t.integer "author_id", null: false
+    t.integer "todo_list_id", null: false
+    t.date "due_date", null: false
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_todo_tasks_on_assignee_id"
+    t.index ["author_id"], name: "index_todo_tasks_on_author_id"
+    t.index ["todo_list_id"], name: "index_todo_tasks_on_todo_list_id"
   end
 
   create_table "user_to_organizations", force: :cascade do |t|
@@ -57,7 +126,18 @@ ActiveRecord::Schema.define(version: 2019_05_09_183810) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
+  add_foreign_key "events", "schedules"
+  add_foreign_key "events", "users", column: "author_id"
   add_foreign_key "hubs", "organizations"
+  add_foreign_key "message_board_posts", "message_boards"
+  add_foreign_key "message_board_posts", "users", column: "author_id"
+  add_foreign_key "message_boards", "hubs"
+  add_foreign_key "schedules", "hubs"
+  add_foreign_key "todo_list_collections", "hubs"
+  add_foreign_key "todo_lists", "todo_list_collections", column: "todo_collection_id"
+  add_foreign_key "todo_tasks", "todo_lists"
+  add_foreign_key "todo_tasks", "users", column: "assignee_id"
+  add_foreign_key "todo_tasks", "users", column: "author_id"
   add_foreign_key "user_to_organizations", "organizations"
   add_foreign_key "user_to_organizations", "users"
 end
