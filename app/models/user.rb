@@ -18,6 +18,16 @@ class User < ApplicationRecord
   through: :organizations,
   source: :hubs
 
+  has_many :message_board_posts,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :MessageBoardPost
+
+  has_many :events,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :Event
+
   attr_reader :password
   def password=(password)
     @password = password
