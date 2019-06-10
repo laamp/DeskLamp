@@ -28,6 +28,16 @@ class User < ApplicationRecord
   foreign_key: :author_id,
   class_name: :Event
 
+  has_many :created_tasks,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :TodoTask
+
+  has_many :assigned_tasks,
+  primary_key: :id,
+  foreign_key: :assignee_id,
+  class_name: :TodoTask
+
   attr_reader :password
   def password=(password)
     @password = password
