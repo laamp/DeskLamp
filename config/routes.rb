@@ -1,13 +1,31 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'static_pages#root'
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [ :new, :create, :show, :edit, :update ]
-    resources :user_to_organizations, only: [ :create ]
+    resource :session, only: [ :create, :destroy ]
     resources :organizations, only: [ :new, :create, :index, :show ]
+    resources :user_to_organizations, only: [ :create ]
     resources :hubs, 
       only: [ :create, :index, :new, :show, :update, :edit, :destroy ]
-    resource :session, only: [ :create, :destroy ]
+
+    resources :message_boards, only: [ :create, :show ] do
+      resources :message_board_posts, 
+        only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
+    end
+
+    resources :todo_list_collections, only: [ :create, :show ] do
+      resources :todo_lists, 
+        only: [ :index, :show, :create, :new, :update, :edit, :destroy ] do
+          resources :todo_tasks, 
+            only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
+        end
+    end
+
+    resources :schedules, only: [ :create, :show ] do
+      resource :events, 
+        only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
+    end
+
   end
 end
