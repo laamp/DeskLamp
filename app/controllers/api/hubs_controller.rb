@@ -17,7 +17,7 @@ class Api::HubsController < ApplicationController
     current_org = current_user.organizations.find_by_id(params[:orgId])
 
     if !current_org
-      render json: ["You are not a part of that organization"], status: 400
+      render json: ["You are not a part of that organization"], status: 401
     else
       @hubs = current_org.hubs
       render :index
@@ -25,7 +25,8 @@ class Api::HubsController < ApplicationController
   end
 
   def show
-
+    @hub = Hub.find(params[:id])
+    #left off here
   end
 
   private

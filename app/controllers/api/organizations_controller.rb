@@ -26,13 +26,19 @@ class Api::OrganizationsController < ApplicationController
       return
     end
 
-      render json: @organization.errors.full_messages, status: 422
+    render json: @organization.errors.full_messages, status: 422
   end
 
   def index
     @organizations = current_user.organizations
 
     render :index
+  end
+
+  def show
+    @organization = Organization.find(params[:id])
+
+    render json: @organization
   end
 
   def new
