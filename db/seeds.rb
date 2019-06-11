@@ -44,6 +44,13 @@ desklamp_message_board = MessageBoard.create(desklamp_message_board_info)
 trello_message_board_info = { hub_id: hub2.id }
 trello_message_board = MessageBoard.create(trello_message_board_info)
 
+# Message Board Posts
+post1_info = { category: "Important", title: "Lunch Room", body: "Fridge is cleared out every Friday", author_id: guest.id , message_board_id: desklamp_message_board.id }
+post1 = MessageBoardPost.create(post1_info)
+
+post2_info = { category: "Fun", title: "4th of July", body: "Cookout and fireworks start at 7pm", author_id: user1.id , message_board_id: trello_message_board.id }
+post2 = MessageBoardPost.create(post2_info)
+
 # Todo List Collection
 desklamp_todo_coll_info = { hub_id: hub1.id }
 desklamp_todo_coll = TodoListCollection.create(desklamp_todo_coll_info)

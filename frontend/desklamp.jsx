@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
+import * as test from "./util/message_board_api_util";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-
 
   window.store = store; //for testing
 

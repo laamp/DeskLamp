@@ -18,7 +18,8 @@ class Api::MessageBoardPostsController < ApplicationController
   end
 
   def show
-    @post = MessageBoardPost.find(params[:id])
+    board = MessageBoard.find(params[:message_board_id])
+    @post = board.message_board_posts.find(params[:id])
 
     if @post
       render json: @post
@@ -34,7 +35,8 @@ class Api::MessageBoardPostsController < ApplicationController
   end
 
   def update
-    @post = MessageBoardPost.find(params[:id])
+    board = MessageBoard.find(params[:message_board_id])
+    @post = board.message_board_posts.find(params[:id])
 
     if @post.update(message_board_post_params)
       render json: @post
@@ -44,7 +46,8 @@ class Api::MessageBoardPostsController < ApplicationController
   end
 
   def edit
-    @post = MessageBoardPost.find(params[:id])
+    board = MessageBoard.find(params[:message_board_id])
+    @post = board.message_board_posts.find(params[:id])
 
     if @post
       render json: @post
