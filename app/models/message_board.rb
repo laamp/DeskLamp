@@ -1,5 +1,5 @@
 class MessageBoard < ApplicationRecord
-  validates :hud_id, presence: true
+  validates :hub_id, presence: true
 
   belongs_to :hub,
   primary_key: :id,
@@ -9,5 +9,6 @@ class MessageBoard < ApplicationRecord
   has_many :message_board_posts,
   primary_key: :id,
   foreign_key: :message_board_id,
-  class_name: :MessageBoardPost
+  class_name: :MessageBoardPost,
+  dependent: :destroy
 end

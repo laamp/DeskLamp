@@ -6,18 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Users
 guest_info = { email: "fake_email@desklamp.com", name: "D. Hansson", password: "password" }
 guest = User.create(guest_info)
 
 user1_info = { email: "user1@desklamp.com", name: "User 1", password: "password" }
 user1 = User.create(user1_info)
 
+# Organizations
 default_org_info = { name: "DeskLamp", description: "The default workspace" }
 default_org = Organization.create(default_org_info)
 
-other_org_info = { name: "BugLamp", description: "DeskLamp's competitor" }
+other_org_info = { name: "Trello", description: "DeskLamp's competitor" }
 other_org = Organization.create(other_org_info)
 
+# Users <=> Organizations
 guest_to_default_org = { user_id: guest.id, organization_id: default_org.id, admin: true }
 UserToOrganization.create(guest_to_default_org)
 
@@ -27,8 +30,30 @@ UserToOrganization.create(user1_to_default_org)
 guest_to_other_org = { user_id: guest.id, organization_id: other_org.id, admin: true }
 UserToOrganization.create(guest_to_other_org)
 
-hub_info = { name: "DeskLamp Home", description: "Main hub for DeskLamp", organization_id: default_org.id, hub_type: "company" }
-Hub.create(hub_info)
+# Hubs
+hub1_info = { name: "DeskLamp Home", description: "Main hub for DeskLamp", organization_id: default_org.id, hub_type: "company" }
+hub1 = Hub.create(hub1_info)
 
-hub2_info = { name: "BugLamp Home", description: "Main hub for BugLamp", organization_id: other_org.id, hub_type: "company" }
-Hub.create(hub2_info)
+hub2_info = { name: "Trello Home", description: "Main hub for Trello", organization_id: other_org.id, hub_type: "company" }
+hub2 = Hub.create(hub2_info)
+
+# Message Boards
+desklamp_message_board_info = { hub_id: hub1.id }
+desklamp_message_board = MessageBoard.create(desklamp_message_board_info)
+
+trello_message_board_info = { hub_id: hub2.id }
+trello_message_board = MessageBoard.create(trello_message_board_info)
+
+# Todo List Collection
+desklamp_todo_coll_info = { hub_id: hub1.id }
+desklamp_todo_coll = TodoListCollection.create(desklamp_todo_coll_info)
+
+trello_todo_coll_info = { hub_id: hub2.id }
+trello_todo_coll = TodoListCollection.create(trello_todo_coll_info)
+
+# Schedules
+desklamp_schedule_info = { hub_id: hub1.id }
+desklamp_schedule = Schedule.create(desklamp_schedule_info)
+
+trello_schedule_info = { hub_id: hub2.id }
+trello_schedule = Schedule.create(trello_schedule_info)

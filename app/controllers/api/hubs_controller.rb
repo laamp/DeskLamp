@@ -25,8 +25,46 @@ class Api::HubsController < ApplicationController
   end
 
   def show
+    @hub = Hub.find_by_id(params[:id])
+
+    if @hub
+      render @hub
+    elsif @hub.nil?
+      render json: ["Hub not found"], status: 404
+    else
+      render json: @hub.errors.full_messages, status: 404
+    end
+  end
+
+  def edit
     @hub = Hub.find(params[:id])
-    #left off here
+
+    if @hub
+      render json: @hub
+    else
+      render json: @hub.errors.full_messages, status: 404
+    end
+  end
+
+  def update
+    @hub = Hub.find(params[:id])
+
+    if @hub.update(hub_params)
+      render json: @hub
+    else
+      render json: @hub.errors.full_messages, status: 422
+    end
+  end
+
+  def destroy
+    @hub = Hub.find(params[:id])
+
+    if @hub
+      @hub.destroy()
+      render json: ["Hub has been deleted"], status: 200
+    else
+      render json: ["No current user found"], status: 404 
+    end
   end
 
   private

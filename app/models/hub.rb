@@ -5,17 +5,20 @@ class Hub < ApplicationRecord
   has_one :message_board,
   primary_key: :id,
   foreign_key: :hub_id,
-  class_name: :MessageBoard
+  class_name: :MessageBoard,
+  dependent: :destroy
 
   has_one :schedule,
   primary_key: :id,
   foreign_key: :hub_id,
-  class_name: :Schedule
+  class_name: :Schedule,
+  dependent: :destroy
 
   has_one :todo_list_collection,
   primary_key: :id,
   foreign_key: :hub_id,
-  class_name: :TodoListCollection
+  class_name: :TodoListCollection,
+  dependent: :destroy
 
   belongs_to :organization,
   primary_key: :id,

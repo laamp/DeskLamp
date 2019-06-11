@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
-
+  # person@basecamp.com / a/A password
   namespace :api, defaults: { format: :json } do
     resources :users, only: [ :new, :create, :show, :edit, :update ]
     resource :session, only: [ :create, :destroy ]
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :hubs, 
       only: [ :create, :index, :new, :show, :update, :edit, :destroy ]
 
-    resources :message_boards, only: [ :create, :show ] do
+    resources :message_boards, only: [ :show ] do
       resources :message_board_posts, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
     end
