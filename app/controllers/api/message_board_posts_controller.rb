@@ -44,11 +44,24 @@ class Api::MessageBoardPostsController < ApplicationController
   end
 
   def edit
-    # @post = MessageBoardPost
+    @post = MessageBoardPost.find(params[:id])
+
+    if @post
+      render json: @post
+    else
+      render json: ["Post not found"], status: 404
+    end
   end
 
   def destroy
+    @post = MessageBoardPost.find(params[:id])
 
+    if @post
+      @post.destroy()
+      render json: ["Post has been deleted"], status: 200
+    else
+      render json: ["Post not found"], status: 400
+    end
   end
 
   private

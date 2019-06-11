@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
     end
 
-    resources :todo_list_collections, only: [ :create, :show ] do
+    resources :todo_list_collections, only: [ :show ] do
       resources :todo_lists, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ] do
           resources :todo_tasks, 
@@ -22,8 +22,8 @@ Rails.application.routes.draw do
         end
     end
 
-    resources :schedules, only: [ :create, :show ] do
-      resource :events, 
+    resources :schedules, only: [ :show ] do
+      resources :events, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
     end
 
