@@ -35,7 +35,8 @@ class Api::TodoListsController < ApplicationController
   end
 
   def update
-    @list = TodoList.find(params[:id])
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    @list = collection.todo_lists.find(params[:id])
 
     if @list.update(todo_list_params)
       render json: @list

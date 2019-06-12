@@ -34,3 +34,22 @@ export const createTodoList = (collectionId, todoList) => {
     })
   )
 }
+
+export const updateTodoList = (collectonId, id, todoList) => {
+  return (
+    $.ajax({
+      method: "PATCH",
+      url: `api/todo_list_collections/${collectonId}/todo_lists/${id}`,
+      data: { todo_list: todoList }
+    })
+  );
+};
+
+export const deleteTodoList = (collectionId, id) => {
+  return (
+    $.ajax({
+      method: "DELETE",
+      url: `api/todo_list_collectons/${collectionId}/todo_lists/${id}`
+    })
+  );
+};
