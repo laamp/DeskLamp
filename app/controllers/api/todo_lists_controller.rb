@@ -11,13 +11,15 @@ class Api::TodoListsController < ApplicationController
   end
   
   def index
-    @lists = TodoList.all
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    @lists = collection.todo_lists
 
     render json: @lists
   end
 
   def show
-    @list = TodoList.find(params[:id])
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    @list = collection.todo_lists.find(params[:id])
 
     if @list
       render json: @list

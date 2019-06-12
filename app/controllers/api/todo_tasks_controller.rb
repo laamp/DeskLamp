@@ -67,7 +67,6 @@ class Api::TodoTasksController < ApplicationController
 
   private
   def todo_task_params
-    params.require(:todo_task)
-      .permit(:name, :done, :details, :due_date, :assignee_id)
+    params.require(:todo_task).permit(:name, :done, :details, :due_date, :assignee_id)
   end
 end

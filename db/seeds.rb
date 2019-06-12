@@ -43,7 +43,6 @@ desklamp_message_board = MessageBoard.create(desklamp_message_board_info)
 
 trello_message_board_info = { hub_id: hub2.id }
 trello_message_board = MessageBoard.create(trello_message_board_info)
-
 # Message Board Posts
 post1_info = { category: "Important", title: "Lunch Room", body: "Fridge is cleared out every Friday", author_id: guest.id , message_board_id: desklamp_message_board.id }
 post1 = MessageBoardPost.create(post1_info)
@@ -51,12 +50,33 @@ post1 = MessageBoardPost.create(post1_info)
 post2_info = { category: "Fun", title: "4th of July", body: "Cookout and fireworks start at 7pm", author_id: user1.id , message_board_id: trello_message_board.id }
 post2 = MessageBoardPost.create(post2_info)
 
-# Todo List Collection
+# Todo List Collections
 desklamp_todo_coll_info = { hub_id: hub1.id }
 desklamp_todo_coll = TodoListCollection.create(desklamp_todo_coll_info)
 
 trello_todo_coll_info = { hub_id: hub2.id }
 trello_todo_coll = TodoListCollection.create(trello_todo_coll_info)
+
+# Todo Lists
+todo_list1_info = { name: "Todo List 1", details: "Stuff to do!!!", todo_collection_id: desklamp_todo_coll.id }
+todo_list2_info = { name: "Todo List 2", details: "Trello to do list", todo_collection_id: trello_todo_coll.id }
+todo_list1 = TodoList.create(todo_list1_info)
+todo_list2 = TodoList.create(todo_list2_info)
+
+# Todo Tasks
+task1_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 1", details: "Do a thing", assignee_id: guest.id, author_id: user1.id, todo_list_id: todo_list1.id }
+task2_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 2", details: "Do a second thing", assignee_id: user1.id, author_id: guest.id, todo_list_id: todo_list1.id }
+task3_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 3", details: "Dance", assignee_id: guest.id, author_id: user1.id, todo_list_id: todo_list1.id }
+task4_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 4", details: "Yell", assignee_id: user1.id, author_id: guest.id, todo_list_id: todo_list2.id }
+task5_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 5", details: "a t t a c", assignee_id: guest.id, author_id: user1.id, todo_list_id: todo_list2.id }
+task6_info = { done: false, due_date: "01-12-2022", name: "TASK NAME 6", details: "Flee", assignee_id: user1.id, author_id: guest.id, todo_list_id: todo_list2.id }
+
+task1 = TodoTask.create(task1_info)
+task2 = TodoTask.create(task2_info)
+task3 = TodoTask.create(task3_info)
+task4 = TodoTask.create(task4_info)
+task5 = TodoTask.create(task5_info)
+task6 = TodoTask.create(task6_info)
 
 # Schedules
 desklamp_schedule_info = { hub_id: hub1.id }
@@ -64,3 +84,10 @@ desklamp_schedule = Schedule.create(desklamp_schedule_info)
 
 trello_schedule_info = { hub_id: hub2.id }
 trello_schedule = Schedule.create(trello_schedule_info)
+
+# Events
+event1_info = { author_id: guest.id, notes: "Company holiday", start_date: "02-18-1970", end_date: "01-08-0900", schedule_id: desklamp_schedule.id }
+event2_info = { author_id: user1.id, notes: "Time travel", start_date: "01-01-1970", end_date: "01-08-1177", schedule_id: trello_schedule.id }
+
+event1 = Event.create(event1_info)
+event2 = Event.create(event2_info)

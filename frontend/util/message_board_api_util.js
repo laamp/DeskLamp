@@ -25,6 +25,16 @@ export const fetchPost = (messageBoardId, id) => {
   );
 };
 
+export const createPost = (messageBoardId, post) => {
+  return (
+    $.ajax({
+      method: "POST",
+      url: `api/message_boards/${messageBoardId}/message_board_posts`,
+      data: { post }
+    })
+  );
+};
+
 export const updatePost = (messageBoardId, id, post) => {
   return (
     $.ajax({
