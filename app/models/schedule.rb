@@ -4,7 +4,8 @@ class Schedule < ApplicationRecord
   has_many :events,
   primary_key: :id,
   foreign_key: :schedule_id,
-  class_name: :Event
+  class_name: :Event,
+  dependent: :destroy
 
   belongs_to :hub,
   primary_key: :id,

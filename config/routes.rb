@@ -17,12 +17,11 @@ Rails.application.routes.draw do
     resources :todo_list_collections, only: [ :show ] do
       resources :todo_lists, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ] do
-          # left off here, making api utils
           resources :todo_tasks, 
             only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
         end
     end
-
+    # left off here
     resources :schedules, only: [ :show ] do
       resources :events, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ]

@@ -12,13 +12,15 @@ class Api::EventsController < ApplicationController
   end
   
   def index
-    @events = Event.all
+    schedule = Schedule.find(params[:schedule_id])
+    @events = schedule.events
 
     render json: @events
   end
 
   def show
-    @event = Event.find(params[:id])
+    schedule = Schedule.find(params[:schedule_id])
+    @event = schedule.events.find(params[:id])
 
     if @event
       render json: @event
@@ -34,7 +36,8 @@ class Api::EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    schedule = Schedule.find(params[:schedule_id])
+    @event = schedule.events.find(params[:id])
 
     if @event.update(event_params)
       render json: @event
@@ -54,7 +57,8 @@ class Api::EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
+    schedule = Schedule.find(params[:schedule_id])
+    @event = schedule.events.find(params[:id])
 
     if @event
       @event.destroy()

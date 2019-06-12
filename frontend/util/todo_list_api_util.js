@@ -71,7 +71,6 @@ export const fetchTask = (collectionId, listId, id) => {
     })
   );
 };
-window.fetchTask = fetchTask;
 
 export const createTask = (collectionId, listId, task) => {
   return (
@@ -82,7 +81,6 @@ export const createTask = (collectionId, listId, task) => {
     })
   );
 };
-window.createTask = createTask;
 
 export const updateTask = (collectionId, listId, id, task) => {
   return (
@@ -102,4 +100,3 @@ export const deleteTask = (collectionId, listId, id) => {
     })
   );
 };
-window.deleteTask = deleteTask;
