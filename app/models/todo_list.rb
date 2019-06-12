@@ -9,5 +9,6 @@ class TodoList < ApplicationRecord
   has_many :todo_tasks,
   primary_key: :id,
   foreign_key: :todo_list_id,
-  class_name: :TodoTask
+  class_name: :TodoTask,
+  dependent: :destroy
 end

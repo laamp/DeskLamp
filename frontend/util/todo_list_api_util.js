@@ -32,8 +32,9 @@ export const createTodoList = (collectionId, todoList) => {
       url: `api/todo_list_collections/${collectionId}/todo_lists`,
       data: { todo_list: todoList }
     })
-  )
-}
+  );
+};
+window.createTodoList = createTodoList;
 
 export const updateTodoList = (collectonId, id, todoList) => {
   return (
@@ -45,11 +46,14 @@ export const updateTodoList = (collectonId, id, todoList) => {
   );
 };
 
+window.updateTodoList = updateTodoList;
+
 export const deleteTodoList = (collectionId, id) => {
   return (
     $.ajax({
       method: "DELETE",
-      url: `api/todo_list_collectons/${collectionId}/todo_lists/${id}`
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${id}`
     })
   );
 };
+window.deleteTodoList = deleteTodoList;
