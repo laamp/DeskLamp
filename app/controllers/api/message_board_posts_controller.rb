@@ -12,7 +12,8 @@ class Api::MessageBoardPostsController < ApplicationController
   end
 
   def index
-    @posts = MessageBoardPost.all
+    board = MessageBoard.find(params[:message_board_id])
+    @posts = board.message_board_posts
 
     render json: @posts
   end

@@ -34,7 +34,6 @@ export const createTodoList = (collectionId, todoList) => {
     })
   );
 };
-window.createTodoList = createTodoList;
 
 export const updateTodoList = (collectonId, id, todoList) => {
   return (
@@ -46,8 +45,6 @@ export const updateTodoList = (collectonId, id, todoList) => {
   );
 };
 
-window.updateTodoList = updateTodoList;
-
 export const deleteTodoList = (collectionId, id) => {
   return (
     $.ajax({
@@ -56,4 +53,53 @@ export const deleteTodoList = (collectionId, id) => {
     })
   );
 };
-window.deleteTodoList = deleteTodoList;
+
+export const fetchAllTasks = (collectionId, listId) => {
+  return (
+    $.ajax({
+      method: "GET",
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks`
+    })
+  );
+};
+
+export const fetchTask = (collectionId, listId, id) => {
+  return (
+    $.ajax({
+      method: "GET",
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks/${id}`
+    })
+  );
+};
+window.fetchTask = fetchTask;
+
+export const createTask = (collectionId, listId, task) => {
+  return (
+    $.ajax({
+      method: "POST",
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks`,
+      data: { todo_task: task }
+    })
+  );
+};
+window.createTask = createTask;
+
+export const updateTask = (collectionId, listId, id, task) => {
+  return (
+    $.ajax({
+      method: "POST",
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks/${id}`,
+      data: { todo_task: task }
+    })
+  );
+};
+
+export const deleteTask = (collectionId, listId, id) => {
+  return (
+    $.ajax({
+      method: "DELETE",
+      url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks/${id}`
+    })
+  );
+};
+window.deleteTask = deleteTask;

@@ -2,10 +2,10 @@ class Api::TodoTasksController < ApplicationController
   def create
     @task = TodoTask.new(todo_task_params)
     @task.author_id = current_user.id
-    @task.assignee_id = params[:assignee_id]
+    @task.assignee_id = params[:todo_task][:assignee_id]
     @task.todo_list_id = params[:todo_list_id]
 
-    if @task.save
+    if @task.save!
       render json: @task
     else
       render @task.errors.full_messages, status: 422
@@ -13,13 +13,17 @@ class Api::TodoTasksController < ApplicationController
   end
   
   def index
-    @tasks = TodoTask.all
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    list = collection.todo_lists.find(params[:todo_list_id])
+    @tasks = list.todo_tasks
 
     render json: @tasks
   end
 
   def show
-    @task = TodoTask.find(params[:id])
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    list = collection.todo_lists.find(params[:todo_list_id])
+    @task = list.todo_tasks.find(params[:id])
 
     if @task
       render json: @task
@@ -35,7 +39,9 @@ class Api::TodoTasksController < ApplicationController
   end
 
   def update
-    @task = TodoTask.find(params[:id])
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    list = collection.todo_lists.find(params[:todo_list_id])
+    @task = list.todo_tasks.find(params[:id])
 
     if @task.update(todo_task_params)
       render json: @task
@@ -55,7 +61,9 @@ class Api::TodoTasksController < ApplicationController
   end
 
   def destroy
-    @task = TodoTask.find(params[:id])
+    collection = TodoListCollection.find(params[:todo_list_collection_id])
+    list = collection.todo_lists.find(params[:todo_list_id])
+    @task = list.todo_tasks.find(params[:id])
 
     if @task
       @task.destroy()

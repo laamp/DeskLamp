@@ -1,5 +1,5 @@
 class TodoTask < ApplicationRecord
-  validates :name, :assignee_id, :todo_list_id, :due_date, :author_id, presence: true
+  validates :name, :author_id, presence: true
   validates :done, inclusion: { in: [ true, false ] }
 
   belongs_to :author,

@@ -3,10 +3,10 @@ class CreateTodoTasks < ActiveRecord::Migration[5.2]
     create_table :todo_tasks do |t|
       t.string :name, null: false
       t.boolean :done, null: false, default: false
-      t.integer :assignee_id, null: false
+      t.integer :assignee_id
       t.integer :author_id, null: false
       t.integer :todo_list_id, null: false
-      t.date :due_date, null: false
+      t.date :due_date
       t.text :details
       t.timestamps
     end
