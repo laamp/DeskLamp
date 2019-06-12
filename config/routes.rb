@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
+  # dummy account for Basecamp reference
   # person@basecamp.com / a/A password
   namespace :api, defaults: { format: :json } do
     resources :users, only: [ :new, :create, :show, :edit, :update ]
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
             only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
         end
     end
-    # left off here
+
     resources :schedules, only: [ :show ] do
       resources :events, 
         only: [ :index, :show, :create, :new, :update, :edit, :destroy ]
