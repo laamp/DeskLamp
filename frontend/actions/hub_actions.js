@@ -4,6 +4,7 @@ import { receiveOrganizationErrors } from "./organization_actions";
 export const RECEIVE_HUBS = 'RECEIVE_HUBS';
 export const RECEIVE_HUB = "RECEIVE_HUB";
 export const DELETED_HUB = "DELETED_HUB";
+export const RECEIVE_HUB_ERRORS = "RECEIVE_HUB_ERRORS";
 
 const receiveHubs = hubs => {
   return ({
@@ -22,6 +23,13 @@ const receiveHub = hub => {
 const deletedHub = () => {
   return ({
     type: DELETED_HUB
+  });
+};
+
+const receiveHubErrors = errors => {
+  return ({
+    type: RECEIVE_HUB_ERRORS,
+    errors: errors
   });
 };
 
