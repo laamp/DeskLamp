@@ -7,7 +7,7 @@ class Api::HubsController < ApplicationController
     @hub = Hub.new(hub_params)
 
     if @hub.save
-      render json: @hub
+      render :show
     else
       render json: @hub.errors.full_messages, status: 422
     end
@@ -28,7 +28,7 @@ class Api::HubsController < ApplicationController
     @hub = Hub.find_by_id(params[:id])
 
     if @hub
-      render @hub
+      render :show
     elsif @hub.nil?
       render json: ["Hub not found"], status: 404
     else
@@ -50,7 +50,7 @@ class Api::HubsController < ApplicationController
     @hub = Hub.find(params[:id])
 
     if @hub.update(hub_params)
-      render json: @hub
+      render :show
     else
       render json: @hub.errors.full_messages, status: 422
     end

@@ -62,6 +62,7 @@ export const fetchAllTasks = (collectionId, listId) => {
     })
   );
 };
+window.fetchAllTasks = fetchAllTasks;
 
 export const fetchTask = (collectionId, listId, id) => {
   return (

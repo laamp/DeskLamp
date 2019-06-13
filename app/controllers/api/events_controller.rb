@@ -5,7 +5,7 @@ class Api::EventsController < ApplicationController
     @event.schedule_id = params[:schedule_id]
 
     if @event.save
-      render json: @event
+      render :show
     else
       render @event.errors.full_messages, status: 422
     end
@@ -15,7 +15,7 @@ class Api::EventsController < ApplicationController
     schedule = Schedule.find(params[:schedule_id])
     @events = schedule.events
 
-    render json: @events
+    render :index
   end
 
   def show
@@ -23,7 +23,7 @@ class Api::EventsController < ApplicationController
     @event = schedule.events.find(params[:id])
 
     if @event
-      render json: @event
+      render :show
     else
       render json: ["Event not found"], status: 404
     end
@@ -40,7 +40,7 @@ class Api::EventsController < ApplicationController
     @event = schedule.events.find(params[:id])
 
     if @event.update(event_params)
-      render json: @event
+      render :show
     else
       render json: @event.errors.full_messages, status: 422
     end

@@ -22,7 +22,7 @@ class Api::OrganizationsController < ApplicationController
       @user_to_org = UserToOrganization.new(joins_info)
       @user_to_org.save
 
-      render json: @organization
+      render :show
       return
     end
 
@@ -38,7 +38,7 @@ class Api::OrganizationsController < ApplicationController
   def show
     @organization = Organization.find(params[:id])
 
-    render json: @organization
+    render :show
   end
 
   def new

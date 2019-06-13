@@ -5,7 +5,7 @@ class Api::MessageBoardPostsController < ApplicationController
     @post.message_board_id = params[:message_board_id]
 
     if @post.save
-      render json: @post
+      render :show
     else
       render @post.errors.full_messages, status: 422
     end
@@ -15,7 +15,7 @@ class Api::MessageBoardPostsController < ApplicationController
     board = MessageBoard.find(params[:message_board_id])
     @posts = board.message_board_posts
 
-    render json: @posts
+    render :index
   end
 
   def show
@@ -23,7 +23,7 @@ class Api::MessageBoardPostsController < ApplicationController
     @post = board.message_board_posts.find(params[:id])
 
     if @post
-      render json: @post
+      render :show
     else
       render json: ["Post not found"], status: 404
     end
@@ -40,7 +40,7 @@ class Api::MessageBoardPostsController < ApplicationController
     @post = board.message_board_posts.find(params[:id])
 
     if @post.update(message_board_post_params)
-      render json: @post
+      render :show
     else
       render json: @post.errors.full_messages, status: 422
     end

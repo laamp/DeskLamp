@@ -15,7 +15,7 @@ export const fetchAllPosts = messageBoardId => {
     })
   );
 };
-
+window.fetchAllPosts = fetchAllPosts;
 export const fetchPost = (messageBoardId, id) => {
   return (
     $.ajax({
@@ -24,7 +24,7 @@ export const fetchPost = (messageBoardId, id) => {
     })
   );
 };
-
+window.fetchPost = fetchPost;
 export const createPost = (messageBoardId, post) => {
   return (
     $.ajax({
