@@ -6,7 +6,7 @@ export const fetchMessageBoard = id => {
     })
   );
 };
-
+window.fetchMessageBoard = fetchMessageBoard;
 export const fetchAllPosts = messageBoardId => {
   return (
     $.ajax({

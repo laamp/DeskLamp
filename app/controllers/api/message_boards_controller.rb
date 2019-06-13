@@ -3,7 +3,7 @@ class Api::MessageBoardsController < ApplicationController
     @message_board = MessageBoard.find(params[:id])
 
     if @message_board
-      render json: @message_board
+      render :show
     else
       render json: ["Message board not found"], status: 404
     end

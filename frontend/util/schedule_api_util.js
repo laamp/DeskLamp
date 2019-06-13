@@ -6,7 +6,7 @@ export const fetchSchedule = id => {
     })
   );
 };
-
+window.fetchSchedule = fetchSchedule;
 export const fetchAllEvents = scheduleId => {
   return (
     $.ajax({

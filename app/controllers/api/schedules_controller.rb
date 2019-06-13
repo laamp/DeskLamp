@@ -3,7 +3,7 @@ class Api::SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
 
     if @schedule
-      render json: @schedule
+      render :show
     else
       render json: ["Schedule not found"], status: 404
     end
