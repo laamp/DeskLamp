@@ -5,6 +5,7 @@ export const RECEIVE_ALL_POSTS = "RECEIVE_ALL_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const DELETED_POST = "DELETED_POST";
 export const RECEIVE_MESSAGE_BOARD_ERRORS = "RECEIVE_MESSAGE_BOARD_ERRORS";
+export const CLEAR_MESSAGE_BOARD_ERRORS = "CLEAR_MESSAGE_BOARD_ERRORS";
 
 const receiveMessageBoard = board => ({
   type: RECEIVE_MESSAGE_BOARD,
@@ -21,13 +22,18 @@ const receivePost = post => ({
   message_board_post: post
 });
 
-const deletedPost = () => ({
-  type: DELETED_POST
+const deletedPost = post => ({
+  type: DELETED_POST,
+  postId: post.id
 });
 
 const receiveMessageBoardErrors = errors => ({
   type: RECEIVE_MESSAGE_BOARD_ERRORS,
   errors: errors
+});
+
+export const clearMessageBoardErrors = () => ({
+  type: CLEAR_MESSAGE_BOARD_ERRORS
 });
 
 export const fetchMessageBoard = id => dispatch => (

@@ -3,6 +3,7 @@ import * as APIUtil from '../util/organization_api_util';
 export const RECEIVE_ALL_ORGANIZATIONS = 'RECEIVE_ALL_ORGANIZATIONS';
 export const RECEIVE_ORGANIZATION = 'RECEIVE_ORGANIZATION';
 export const RECEIVE_ORGANIZATION_ERRORS = 'RECEIVE_ORGANIZATION_ERRORS';
+export const CLEAR_ORG_ERRORS = 'CLEAR_ORG_ERRORS';
 
 const receiveAllOrganizations = organizations => {
   return ({
@@ -24,6 +25,10 @@ export const receiveOrganizationErrors = errors => {
     errors: errors
   });
 };
+
+export const clearOrgErrors = () => ({
+  type: CLEAR_ORG_ERRORS
+});
 
 export const requestAllOrganizations = () => dispatch => {
   return (
