@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux";
-
 import {
   RECEIVE_ALL_ORGANIZATIONS,
   RECEIVE_ORGANIZATION
