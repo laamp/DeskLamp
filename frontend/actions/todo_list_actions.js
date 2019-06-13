@@ -8,6 +8,7 @@ export const RECEIVE_ALL_TODO_TASKS = "RECEIVE_ALL_TODO_TASKS";
 export const RECEIVE_TODO_TASK = "RECEIVE_TODO_TASK";
 export const DELETED_TODO_TASK = "DELETED_TODO_TASK";
 export const RECEIVE_TODO_ERRORS = "RECEIVE_TODO_ERRORS";
+export const CLEAR_TODO_ERRORS = "CLEAR_TODO_ERRORS";
 
 const receiveTodoCollection = collection => ({
   type: RECEIVE_TODO_COLLECTION,
@@ -24,8 +25,9 @@ const receiveTodoList = list => ({
   todo_list: list
 });
 
-const deletedTodoList = () => ({
-  type: DELETED_TODO_LIST
+const deletedTodoList = list => ({
+  type: DELETED_TODO_LIST,
+  listId: list.id
 });
 
 const receiveAllTodoTasks = tasks => ({
@@ -38,13 +40,18 @@ const receiveTodoTask = task => ({
   todo_task: task
 });
 
-const deletedTodoTask = () => ({
-  type: DELETED_TODO_TASK
+const deletedTodoTask = task => ({
+  type: DELETED_TODO_TASK,
+  taskId: task.id
 });
 
 const receiveTodoErrors = errors => ({
   type: RECEIVE_TODO_ERRORS,
   errors: errors
+});
+
+export const clearTodoErrors = () => ({
+  type: CLEAR_TODO_ERRORS
 });
 
 export const fetchTodoCollection = id => dispatch => (
@@ -79,7 +86,7 @@ export const updateTodoList = (collectionId, id, todoList) => (
 
 export const deleteTodoList = (collectionId, id) => (
   APIUtil.deleteTodoList(collectionId, id)
-    .then(() => dispatch(deletedTodoList()))
+    .then(list => dispatch(deletedTodoList(list)))
     .fail(err => dispatch(receiveTodoErrors(err)))
 );
 
@@ -109,6 +116,6 @@ export const updateTask = (collectionId, listId, id, task) => dispatch => (
 
 export const deleteTask = (collectionId, listId, id) => dispatch => (
   APIUtil.deleteTask(collectionId, listId, id)
-    .then(() => dispatch(deletedTodoTask()))
+    .then(task => dispatch(deletedTodoTask(task)))
     .fail(err => dispatch(receiveTodoErrors(err)))
 );

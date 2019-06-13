@@ -5,6 +5,7 @@ export const RECEIVE_ALL_EVENTS = "RECEIVE_ALL_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const DELETED_EVENT = "DELETED_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
+export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
 
 const receiveSchedule = schedule => ({
   type: RECEIVE_SCHEDULE,
@@ -21,13 +22,18 @@ const receiveEvent = event => ({
   event: event
 });
 
-const deletedEvent = () => ({
-  type: DELETED_EVENT
+const deletedEvent = event => ({
+  type: DELETED_EVENT,
+  eventId: event.id
 });
 
 const receiveEventErrors = errors => ({
   type: RECEIVE_EVENT_ERRORS,
   errors: errors
+});
+
+export const clearEventErrors = () => ({
+  type: CLEAR_EVENT_ERRORS
 });
 
 export const fetchSchedule = id => dispatch => (
@@ -62,6 +68,6 @@ export const updateEvent = (scheduleId, id, event) => dispatch => (
 
 export const deleteEvent = (scheduleId, id) => dispatch => (
   APIUtil.deleteEvent(scheduleId, id)
-    .then(() => dispatch(deletedEvent()))
+    .then(event => dispatch(deletedEvent(event)))
     .fail(err => dispatch(receiveEventErrors(err)))
 );
