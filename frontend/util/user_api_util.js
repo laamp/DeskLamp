@@ -16,7 +16,7 @@ export const getUser = id => {
     })
   );
 };
-window.getUser = getUser;
+
 export const updateUser = (id, user) => {
   return (
     $.ajax({

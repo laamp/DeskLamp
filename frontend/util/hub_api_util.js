@@ -7,7 +7,7 @@ export const fetchHubs = orgId => {
     })
   );
 };
-window.fetchHubs = fetchHubs;
+
 export const createHub = hub => {
   return (
     $.ajax({
@@ -26,7 +26,7 @@ export const fetchHub = id => {
     })
   );
 };
-window.fetchHub = fetchHub;
+
 export const updateHub = (id, hub) => {
   return (
     $.ajax({

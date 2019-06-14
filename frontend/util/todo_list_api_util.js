@@ -6,7 +6,7 @@ export const fetchTodoCollecton = id => {
     })
   );
 };
-window.fetchTodoCollecton = fetchTodoCollecton;
+
 export const fetchAllTodoLists = collectionId => {
   return (
     $.ajax({
@@ -15,7 +15,7 @@ export const fetchAllTodoLists = collectionId => {
     })
   );
 };
-window.fetchAllTodoLists = fetchAllTodoLists;
+
 export const fetchTodoList = (collectionId, id) => {
   return (
     $.ajax({
@@ -24,7 +24,7 @@ export const fetchTodoList = (collectionId, id) => {
     })
   );
 };
-window.fetchTodoList = fetchTodoList;
+
 export const createTodoList = (collectionId, todoList) => {
   return (
     $.ajax({
@@ -62,7 +62,6 @@ export const fetchAllTasks = (collectionId, listId) => {
     })
   );
 };
-window.fetchAllTasks = fetchAllTasks;
 
 export const fetchTask = (collectionId, listId, id) => {
   return (

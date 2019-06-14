@@ -8,7 +8,6 @@ class OrganizationHome extends React.Component {
     this.state = {
       loading: true
     };
-    window.currentOrganization = this.props.currentOrganization;
   }
 
   componentDidUpdate() {

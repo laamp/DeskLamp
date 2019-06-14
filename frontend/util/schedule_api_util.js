@@ -6,7 +6,7 @@ export const fetchSchedule = id => {
     })
   );
 };
-window.fetchSchedule = fetchSchedule;
+
 export const fetchAllEvents = scheduleId => {
   return (
     $.ajax({
@@ -15,7 +15,7 @@ export const fetchAllEvents = scheduleId => {
     })
   );
 };
-window.fetchAllEvents = fetchAllEvents;
+
 export const fetchEvent = (scheduleId, id) => {
   return (
     $.ajax({
@@ -24,7 +24,7 @@ export const fetchEvent = (scheduleId, id) => {
     })
   );
 };
-window.fetchEvent = fetchEvent;
+
 export const createEvent = (scheduleId, event) => {
   return (
     $.ajax({

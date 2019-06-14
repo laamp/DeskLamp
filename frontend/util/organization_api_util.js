@@ -6,7 +6,7 @@ export const fetchOrganizations = () => {
     })
   );
 };
-window.fetchOrganizations = fetchOrganizations;
+
 export const fetchOrganization = id => {
   return (
     $.ajax({
@@ -15,7 +15,7 @@ export const fetchOrganization = id => {
     })
   );
 };
-window.fetchOrganization = fetchOrganization;
+
 export const createOrganization = organization => {
   return (
     $.ajax({
