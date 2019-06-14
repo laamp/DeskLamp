@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
+import Loading from '../loading';
 
 class OrganizationForm extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class OrganizationForm extends React.Component {
     const organization = Object.assign({}, this.state);
     this.props.createOrganization(organization).then(org => {
       return (
-        <Redirect to={`/organizations/${org.id}`} />
+        this.props.requestUserOrgs().then(this.shouldRender = true)
       );
     });
   }
@@ -45,6 +45,7 @@ class OrganizationForm extends React.Component {
   }
 
   hasOrganizationsSection(organizations) {
+    if (!this.shouldRender) return (<></>);
     return (
       <>
         <section id="organizations-container">
@@ -101,7 +102,7 @@ class OrganizationForm extends React.Component {
 
   render() {
     const { organizations } = this.props;
-    if (!this.shouldRender) return (<></>);
+    if (!this.shouldRender) return (<Loading />);
     return (
       <>
         <section className="launchpad-header">
@@ -118,6 +119,7 @@ class OrganizationForm extends React.Component {
             <button onClick={this.props.signOut}>Log out</button>
           </div>
         </section>
+
         {Object.entries(organizations).length === 0 ?
           this.createOrganizationForm() :
           this.hasOrganizationsSection(organizations)

@@ -5,17 +5,23 @@ class Api::OrganizationsController < ApplicationController
     ActiveRecord::Base.transaction do
       # update their job title
       current_user.job_title = params[:organization][:jobTitle]
+      current_user.company_name = params[:organization][:name]
       current_user.save
 
       # create organization
-      @organization.save
+      if !Organization.exists?(:name=>@organization.name)
+        @organization.save
+
+        # create default company hub for new organization
+        hub_desc = "Default workspace for " + @organization.name
+        hub_info = { name: @organization.name, description: hub_desc,
+          organization_id: @organization.id, hub_type: "company" }
+        @hub = Hub.new(hub_info)
+        @hub.save
+      else
+        @organization = Organization.find_by(name: params[:organization][:name])
+      end
       
-      # create default company hub for new organization
-      hub_desc = "Default workspace for " + @organization.name
-      hub_info = { name: @organization.name, description: hub_desc,
-        organization_id: @organization.id, hub_type: "company" }
-      @hub = Hub.new(hub_info)
-      @hub.save
 
       # create user to org record for joins table
       joins_info = { user_id: current_user.id, organization_id: @organization.id, admin: true }
