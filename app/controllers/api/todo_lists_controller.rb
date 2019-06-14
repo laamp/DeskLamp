@@ -1,65 +1,65 @@
 class Api::TodoListsController < ApplicationController
   def create
-    @list = TodoList.new(todo_list_params)
-    @list.todo_collection_id = params[:todo_list_collection_id]
+    @todo_list = TodoList.new(todo_list_params)
+    @todo_list.todo_collection_id = params[:todo_list_collection_id]
 
-    if @list.save
-      render json: @list
+    if @todo_list.save
+      render :show
     else
-      render @list.errors.full_messages, status: 422
+      render @todo_list.errors.full_messages, status: 422
     end
   end
   
   def index
     collection = TodoListCollection.find(params[:todo_list_collection_id])
-    @lists = collection.todo_lists
+    @todo_lists = collection.todo_lists
 
-    render json: @lists
+    render :index
   end
 
   def show
     collection = TodoListCollection.find(params[:todo_list_collection_id])
-    @list = collection.todo_lists.find(params[:id])
+    @todo_list = collection.todo_lists.find(params[:id])
 
-    if @list
-      render json: @list
+    if @todo_list
+      render :show
     else
       render json: ["List not found"], status: 404
     end
   end
 
   def new
-    @list = TodoList.new
+    @todo_list = TodoList.new
 
-    render json: @list
+    render json: @todo_list
   end
 
   def update
     collection = TodoListCollection.find(params[:todo_list_collection_id])
-    @list = collection.todo_lists.find(params[:id])
+    @todo_list = collection.todo_lists.find(params[:id])
 
-    if @list.update(todo_list_params)
-      render json: @list
+    if @todo_list.update(todo_list_params)
+      render :show
     else
-      render json: @list.errors.full_messages, status: 422
+      render json: @todo_list.errors.full_messages, status: 422
     end
   end
 
   def edit
-    @list = TodoList.find(params[:id])
+    @todo_list = TodoList.find(params[:id])
 
-    if @list
-      render json: @list
+    if @todo_list
+      render json: @todo_list
     else
       render json: ["List not found"], status: 404
     end
   end
 
   def destroy
-    @list = TodoList.find(params[:id])
+    @todo_list = TodoList.find(params[:id])
 
-    if @list
-      @list.destroy()
+    if @todo_list
+      @todo_list.destroy()
       render json: ["List has been deleted"], status: 200
     else
       render json: ["List not found"], status: 400

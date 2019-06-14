@@ -3,7 +3,7 @@ class Api::TodoListCollectionsController < ApplicationController
     @todo_collection = TodoListCollection.find(params[:id])
 
     if @todo_collection
-      render json: @todo_collection
+      render :show
     else
       render json: ["Todo collection not found"], status: 404
     end
