@@ -6,17 +6,17 @@ class OrganizationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       jobTitle: '',
       name: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.signOutSubmit = this.handleSubmit.bind(this);
-
-    this.shouldRender = false;
   }
 
   componentDidMount() {
-    this.props.requestUserOrgs().then(this.shouldRender = true);
+    this.props.requestUserOrgs()
+      .then(() => this.setState({ loading: false }));
   }
 
   update(field) {
@@ -30,7 +30,8 @@ class OrganizationForm extends React.Component {
     const organization = Object.assign({}, this.state);
     this.props.createOrganization(organization).then(org => {
       return (
-        this.props.requestUserOrgs().then(this.shouldRender = true)
+        this.props.requestUserOrgs()
+          .then(this.setState({ loading: false }))
       );
     });
   }
@@ -45,7 +46,7 @@ class OrganizationForm extends React.Component {
   }
 
   hasOrganizationsSection(organizations) {
-    if (!this.shouldRender) return (<></>);
+    if (this.state.loading) return <Loading />;
     return (
       <>
         <section id="organizations-container">
@@ -102,7 +103,7 @@ class OrganizationForm extends React.Component {
 
   render() {
     const { organizations } = this.props;
-    if (!this.shouldRender) return (<Loading />);
+    if (this.state.loading) return <Loading />;
     return (
       <>
         <section className="launchpad-header">

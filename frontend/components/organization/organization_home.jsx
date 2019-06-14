@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Loading from '../loading';
+import LoggedInHeader from '../logged_in_header';
 
 class OrganizationHome extends React.Component {
 
@@ -22,25 +24,6 @@ class OrganizationHome extends React.Component {
 
   componentWillUnmount() {
     this.props.clearErrors();
-  }
-
-  orgViewHeader() {
-    return (
-      <header className="org-view-header">
-        <div className="left-header-item">
-          <img src={window.basecampLogoUrl} alt="Organizations" draggable='false' />
-        </div>
-        <div className="center-header-item">
-          <nav className="nav-items">
-            <div id="home-button">Home</div>
-            <div id="signout-button">Log out</div>
-          </nav>
-        </div>
-        <div className="right-header-item">
-          <i className="material-icons">account_circle</i>
-        </div>
-      </header>
-    );
   }
 
   renderHubs(hubtype) {
@@ -80,11 +63,11 @@ class OrganizationHome extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return null;
+    if (this.state.loading) return <Loading />;
 
     return (
       <>
-        {this.orgViewHeader()}
+        <LoggedInHeader />
         {this.renderErrors()}
 
         <section className='hubs-wrapper'>
