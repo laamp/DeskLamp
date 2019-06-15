@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Loading from '../loading';
-import LoggedInHeader from '../logged_in_header';
+import Loading from "../loading";
+import LoggedInHeaderContainer from '../logged_in_header/logged_in_header_container';
 
 class OrganizationHome extends React.Component {
 
@@ -18,7 +18,7 @@ class OrganizationHome extends React.Component {
 
   componentDidMount() {
     this.props.fetchHubs(this.props.match.params.organizationId)
-      .then(() => (this.setState({ loading: false })))
+      .then(() => (this.setState({ loading: false, thisOrgId: this.props.match.params.organizationId })))
       .fail(() => (this.setState({ loading: false })));
   }
 
@@ -67,7 +67,7 @@ class OrganizationHome extends React.Component {
 
     return (
       <>
-        <LoggedInHeader />
+        <LoggedInHeaderContainer currentOrganization={this.props.currentOrganization} />
         {this.renderErrors()}
 
         <section className='hubs-wrapper'>

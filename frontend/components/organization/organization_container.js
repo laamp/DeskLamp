@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { requestOrganization } from '../../actions/organization_actions';
 import { signOut, clearErrors } from '../../actions/session_actions';
 import { fetchHubs } from '../../actions/hub_actions';
 import OrganizationHome from './organization_home';

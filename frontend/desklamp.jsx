@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
-import Loading from "./components/loading";
+// import Loading from "./components/loading";
 import configureStore from './store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,5 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const rootElement = document.getElementById('root');
 
+  // ReactDOM.render(<Loading />, rootElement);
   ReactDOM.render(<Root store={store} />, rootElement);
 });
