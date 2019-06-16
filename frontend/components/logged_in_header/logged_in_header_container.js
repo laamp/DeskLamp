@@ -3,8 +3,8 @@ import LoggedInHeader from "./logged_in_header";
 import { signOut, clearErrors } from "../../actions/session_actions";
 import { clearOrgErrors } from "../../actions/organization_actions";
 
-const mapStateToProps = (state, { currentOrganization }) => ({
-  currentOrganization
+const mapStateToProps = state => ({
+  currentOrg: state.session.organization
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,6 +2,7 @@ import * as APIUtilSession from '../util/session_api_util';
 import * as APIUtilUser from '../util/user_api_util';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const RECEIVE_CURRENT_ORGANIZATION = 'RECEIVE_CURRENT_ORGANIZATION';
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
@@ -13,6 +14,11 @@ const receiveCurrentUser = currentUser => {
     currentUser: currentUser
   });
 };
+
+export const receiveCurrentOrganization = organization => ({
+  type: RECEIVE_CURRENT_ORGANIZATION,
+  organization
+});
 
 const signOutCurrentUser = () => {
   return ({

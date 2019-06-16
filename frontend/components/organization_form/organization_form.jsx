@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import Loading from '../loading';
+import { manualSave } from '../../desklamp';
 
 class OrganizationForm extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class OrganizationForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.signOutSubmit = this.handleSubmit.bind(this);
+    manualSave();
   }
 
   componentDidMount() {
@@ -55,7 +57,7 @@ class OrganizationForm extends React.Component {
             <ul>
               {Object.values(organizations).map(
                 org => <li key={org.id}>
-                  <Link to={`/organizations/${org.id}`}>
+                  <Link onClick={() => this.props.setCurrentOrganization(org)} to={`/organizations/${org.id}`}>
                     <img src={window.basecampLogoUrl} />
                     <h2>{org.name}</h2>
                   </Link>

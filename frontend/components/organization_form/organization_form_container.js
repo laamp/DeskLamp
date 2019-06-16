@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createOrganization, requestAllOrganizations } from '../../actions/organization_actions';
-import { signOut } from '../../actions/session_actions';
+import { signOut, receiveCurrentOrganization } from '../../actions/session_actions';
 import OrganizationForm from './organization_form';
 
 const mapStateToProps = state => {
@@ -13,6 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return ({
+    setCurrentOrganization: organization => dispatch(receiveCurrentOrganization(organization)),
     createOrganization: organization => dispatch(createOrganization(organization)),
     requestUserOrgs: () => dispatch(requestAllOrganizations()),
     signOut: () => dispatch(signOut())

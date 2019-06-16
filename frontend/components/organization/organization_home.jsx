@@ -18,7 +18,7 @@ class OrganizationHome extends React.Component {
 
   componentDidMount() {
     this.props.fetchHubs(this.props.match.params.organizationId)
-      .then(() => (this.setState({ loading: false, thisOrgId: this.props.match.params.organizationId })))
+      .then(() => (this.setState({ loading: false })))
       .fail(() => (this.setState({ loading: false })));
   }
 

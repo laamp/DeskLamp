@@ -5,6 +5,16 @@ import Loading from "../loading";
 class LoggedInHeader extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      renderUserModal: false
+    };
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    console.log("Clicked!");
+    let flag = this.state.renderUserModal;
+    this.setState({ renderUserModal: !flag });
   }
 
   render() {
@@ -16,14 +26,15 @@ class LoggedInHeader extends React.Component {
         </div>
         <div className="center-header-item">
           <nav className="nav-items">
-            <Link to={`/organizations/${this.props.currentOrganization.id}`}>
+            <Link to={`/organizations/${this.props.currentOrg.id}`}>
               <i id="home-icon" className="material-icons">home</i>
               <div id="home-button">Home</div>
             </Link>
           </nav>
         </div>
         <div className="right-header-item">
-          <i className="material-icons">account_circle</i>
+          <i onClick={this.toggleModal} className="material-icons">account_circle</i>
+          {this.state.renderUserModal === true ? <h1>TRUE</h1> : <></>}
         </div>
       </header>
     );
