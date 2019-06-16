@@ -3,27 +3,40 @@
 /* content section */
 
 .hub-divider {
-  margin: 50px auto 25px auto;
-  width: 1000px;
-  z-index: 0;
-  position: relative;
   color: #877457;
 }
 
+.hub-divider p {
+  position: relative;
+  z-index: 1;
 
-.hub-divider:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: -1;
+  &:before {
+    content: "";
+    border-top: 2px solid #dfdfdf;
+    margin: 0 auto;
+    position: absolute;
+    top: 33%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  span {
+    background: $login-bg-color;
+    padding: 0 10px 0 10px;
+    display: block;
+    width: fit-content;
+    font-size: 18px;
+    margin: 0 auto;
+  }
 }
 
-.hub-divider div {
-  display: block;
-  width: fit-content;
+.hubs-container {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
   margin: 0 auto;
 }
 
@@ -32,6 +45,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  margin: 15px 0;
 }
 
 .hub-tile {
@@ -44,6 +58,7 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.25),
     0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 17px;
+  margin: 10px;
 }
 
 .hub-tile a {

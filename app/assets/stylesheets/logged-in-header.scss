@@ -61,7 +61,7 @@
 }
 
 #user-modal {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   width: 250px;
   height: fit-content;
@@ -117,7 +117,7 @@
 }
 
 .up-pointer {
-  z-index: 2;
+  z-index: 3;
   width: 0;
   height: 0;
   background-color: transparent;

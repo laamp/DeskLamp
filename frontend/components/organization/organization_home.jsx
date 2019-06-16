@@ -2,14 +2,15 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Loading from "../loading";
 import LoggedInHeaderContainer from '../logged_in_header/logged_in_header_container';
+import { manualSave } from '../../desklamp';
 
 class OrganizationHome extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       loading: true
     };
+    manualSave();
   }
 
   componentDidUpdate() {
@@ -27,10 +28,18 @@ class OrganizationHome extends React.Component {
   }
 
   renderHubs(hubtype) {
+    let companyName = this.props.currentOrganization.name;
+    companyName = companyName.slice(0, 1).toUpperCase() + companyName.slice(1);
+
     return (
       <>
         <div className='hub-divider'>
-          {/* <div>{hubtype == "company" ? this.props.currentOrganization : hubtype}</div> */}
+          <p>
+            <span>
+              {hubtype === "company" ? companyName :
+                hubtype.slice(0, 1).toUpperCase() + hubtype.slice(1)}
+            </span>
+          </p>
         </div>
         <ul className='hubs-list'>
           {Object.values(this.props.hubs).map(hub => {
