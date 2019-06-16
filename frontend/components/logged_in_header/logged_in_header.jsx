@@ -12,9 +12,23 @@ class LoggedInHeader extends React.Component {
   }
 
   toggleModal() {
-    console.log("Clicked!");
     let flag = this.state.renderUserModal;
     this.setState({ renderUserModal: !flag });
+  }
+
+  userModal() {
+    return (
+      <>
+        <div className="up-pointer"></div>
+        <div id="user-modal">
+          <p><span>User Options</span></p>
+          <ul>
+            <li><Link to={`/organizations`}>Switch Organization</Link></li>
+            <li onClick={this.props.signOut}>Log Out</li>
+          </ul>
+        </div>
+      </>
+    );
   }
 
   render() {
@@ -26,7 +40,7 @@ class LoggedInHeader extends React.Component {
         </div>
         <div className="center-header-item">
           <nav className="nav-items">
-            <Link to={`/organizations/${this.props.currentOrg.id}`}>
+            <Link to={`/organizations/${this.props.currentOrg}`}>
               <i id="home-icon" className="material-icons">home</i>
               <div id="home-button">Home</div>
             </Link>
@@ -34,7 +48,7 @@ class LoggedInHeader extends React.Component {
         </div>
         <div className="right-header-item">
           <i onClick={this.toggleModal} className="material-icons">account_circle</i>
-          {this.state.renderUserModal === true ? <h1>TRUE</h1> : <></>}
+          {this.state.renderUserModal === true ? this.userModal() : <></>}
         </div>
       </header>
     );

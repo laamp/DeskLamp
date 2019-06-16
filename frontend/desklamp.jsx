@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
-// import Loading from "./components/loading";
 import configureStore from './store/store';
 import { loadState, saveState } from "./localStorage";
 
@@ -11,8 +10,6 @@ const persistedState = loadState();
 export const manualSave = () => {
   saveState(store.getState());
 };
-
-window.manualSave = manualSave;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.currentUser) {
@@ -34,10 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  window.store = store; //for testing
 
   const rootElement = document.getElementById('root');
 
-  // ReactDOM.render(<Loading />, rootElement);
   ReactDOM.render(<Root store={store} />, rootElement);
 });

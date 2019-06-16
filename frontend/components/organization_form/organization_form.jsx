@@ -57,7 +57,7 @@ class OrganizationForm extends React.Component {
             <ul>
               {Object.values(organizations).map(
                 org => <li key={org.id}>
-                  <Link onClick={() => this.props.setCurrentOrganization(org)} to={`/organizations/${org.id}`}>
+                  <Link onClick={() => this.props.setCurrentOrganization(org.id)} to={`/organizations/${org.id}`}>
                     <img src={window.basecampLogoUrl} />
                     <h2>{org.name}</h2>
                   </Link>

@@ -15,9 +15,9 @@ const receiveCurrentUser = currentUser => {
   });
 };
 
-export const receiveCurrentOrganization = organization => ({
+export const receiveCurrentOrganization = orgId => ({
   type: RECEIVE_CURRENT_ORGANIZATION,
-  organization
+  orgId
 });
 
 const signOutCurrentUser = () => {

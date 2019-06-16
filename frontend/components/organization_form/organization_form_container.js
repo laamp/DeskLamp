@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    setCurrentOrganization: organization => dispatch(receiveCurrentOrganization(organization)),
+    setCurrentOrganization: orgId => dispatch(receiveCurrentOrganization(orgId)),
     createOrganization: organization => dispatch(createOrganization(organization)),
     requestUserOrgs: () => dispatch(requestAllOrganizations()),
     signOut: () => dispatch(signOut())

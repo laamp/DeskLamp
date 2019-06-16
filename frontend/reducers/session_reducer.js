@@ -20,7 +20,7 @@ const sessionReducer = (oldState = nullUser, action) => {
     case RECEIVE_CURRENT_ORGANIZATION:
       return Object.assign(
         {}, oldState,
-        { organization: action.organization }
+        { organization: action.orgId }
       );
     case SIGNOUT_CURRENT_USER:
       return nullUser;

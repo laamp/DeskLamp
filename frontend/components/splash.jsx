@@ -14,17 +14,17 @@ export const SplashComponent = () => {
               <div className="about-text">
                 <p>
                   <strong>
-                    That’s the number of projects that have been managed with Basecamp.&nbsp;
+                    That’s the number of projects that have been managed with DeskLamp.&nbsp;
                   </strong>
-                  Companies trust Basecamp because it’s *the* gold-standard for managing
+                  Companies trust DeskLamp because it’s *the* gold-standard for managing
                   projects, working with clients, and communicating with your team.
                   Don’t settle for imitators and also-rans.
                   If you want to finish projects faster with less chaos and confusion,
-                  there’s only Basecamp.
+                  there’s only DeskLamp.
                 </p>
               </div>
               <div className="signup-text">
-                <p>3,089 businesses signed up in the last week. Join them! Try Basecamp</p>
+                <p>3,089 businesses signed up in the last week. Join them! Try DeskLamp</p>
                 <Link to="/signup">Sign up for free!</Link>
               </div>
             </div>
