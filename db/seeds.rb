@@ -37,6 +37,18 @@ hub1 = Hub.create(hub1_info)
 hub2_info = { name: "Trello Home", description: "Main hub for Trello", organization_id: other_org.id, hub_type: "company" }
 hub2 = Hub.create(hub2_info)
 
+hub3_info = { name: "Default Team", description: "Default team for DeskLamp", organization_id: default_org.id, hub_type: "team" }
+hub3 = Hub.create(hub3_info)
+
+hub4_info = { name: "Default Team", description: "Default team for Trello", organization_id: other_org.id, hub_type: "team" }
+hub4 = Hub.create(hub4_info)
+
+hub5_info = { name: "Default Project", description: "Default project for DeskLamp", organization_id: default_org.id, hub_type: "project" }
+hub5 = Hub.create(hub5_info)
+
+hub6_info = { name: "Default Project", description: "Default project for Trello", organization_id: other_org.id, hub_type: "project" }
+hub6 = Hub.create(hub6_info)
+
 # Message Boards
 desklamp_message_board_info = { hub_id: hub1.id }
 desklamp_message_board = MessageBoard.create(desklamp_message_board_info)

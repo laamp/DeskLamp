@@ -18,6 +18,22 @@ class Api::OrganizationsController < ApplicationController
           organization_id: @organization.id, hub_type: "company" }
         @hub = Hub.new(hub_info)
         @hub.save
+
+        hub_info_team = {
+          name: "Default Team",
+          description: "Default team workspace",
+          organization_id: @organization.id,
+          hub_type: "team"
+        };
+        Hub.create(hub_info_team);
+
+        hub_info_project = {
+          name: "Default Project",
+          description: "Default project workspace",
+          organization_id: @organization.id,
+          hub_type: "project"
+        };
+        Hub.create(hub_info_project);
       else
         @organization = Organization.find_by(name: params[:organization][:name])
       end
