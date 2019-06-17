@@ -8,6 +8,7 @@ import SignInFormContainer from './session_form/signin_form_container';
 import SignUpFormContainer from './session_form/signup_form_container';
 import OrganizationFormContainer from './organization_form/organization_form_container';
 import OrganizationHome from './organization/organization_container';
+import HubShowContainer from "./hub_show/hub_show_container";
 
 const App = () => (
   <>
@@ -16,7 +17,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <ProtectedRoute exact path="/organizations" component={OrganizationFormContainer} />
       <ProtectedRoute path="/organizations/:organizationId" component={OrganizationHome} />
-      <ProtectedRoute path="/hubs/:hubId" component={SplashComponent} />
+      <ProtectedRoute path="/hubs/:hubId" component={HubShowContainer} />
       <Route exact path="/" component={SplashComponent} />
       <Route path="*" component={NotFound} />
     </Switch>

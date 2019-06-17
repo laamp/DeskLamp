@@ -1,6 +1,7 @@
 class Api::SchedulesController < ApplicationController
   def show
-    @schedule = Schedule.find(params[:id])
+    hub = Hub.find(params[:id])
+    @schedule = hub.schedule
 
     if @schedule
       render :show

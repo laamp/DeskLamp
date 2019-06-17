@@ -49,6 +49,7 @@ class OrganizationHome extends React.Component {
       }
     );
     this.props.createHub(newHub).then(() => {
+      this.toggleOff();
       this.props.fetchHubs(this.props.currentOrganization.id);
       manualSave();
     });

@@ -1,6 +1,7 @@
 class Api::MessageBoardsController < ApplicationController
   def show
-    @message_board = MessageBoard.find(params[:id])
+    hub = Hub.find(params[:id])
+    @message_board = hub.message_board
 
     if @message_board
       render :show

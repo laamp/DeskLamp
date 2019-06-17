@@ -1,6 +1,7 @@
 class Api::TodoListCollectionsController < ApplicationController
   def show
-    @todo_collection = TodoListCollection.find(params[:id])
+    hub = Hub.find(params[:id])
+    @todo_collection = hub.todo_list_collection
 
     if @todo_collection
       render :show
