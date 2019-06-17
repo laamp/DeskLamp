@@ -31,22 +31,52 @@ guest_to_other_org = { user_id: guest.id, organization_id: other_org.id, admin: 
 UserToOrganization.create(guest_to_other_org)
 
 # Hubs
-hub1_info = { name: "DeskLamp Home", description: "Main hub for DeskLamp", organization_id: default_org.id, hub_type: "company" }
+hub1_info = { 
+  name: "DeskLamp Home", 
+  description: "A place for company-wide announcements and things that everyone should be aware of", 
+  organization_id: default_org.id, 
+  hub_type: "company" 
+}
 hub1 = Hub.create(hub1_info)
 
-hub2_info = { name: "Trello Home", description: "Main hub for Trello", organization_id: other_org.id, hub_type: "company" }
+hub2_info = { 
+  name: "Trello Home", 
+  description: "A place for company-wide announcements and things that everyone should be aware of", 
+  organization_id: other_org.id, 
+  hub_type: "company" 
+}
 hub2 = Hub.create(hub2_info)
 
-hub3_info = { name: "Default Team", description: "Default team for DeskLamp", organization_id: default_org.id, hub_type: "team" }
+hub3_info = { 
+  name: "Default Team", 
+  description: "An example of a group specific to a team at your company", 
+  organization_id: default_org.id, 
+  hub_type: "team"
+}
 hub3 = Hub.create(hub3_info)
 
-hub4_info = { name: "Default Team", description: "Default team for Trello", organization_id: other_org.id, hub_type: "team" }
+hub4_info = { 
+  name: "Default Team", 
+  description: "An example of a group specific to a team at your company", 
+  organization_id: other_org.id, 
+  hub_type: "team" 
+}
 hub4 = Hub.create(hub4_info)
 
-hub5_info = { name: "Default Project", description: "Default project for DeskLamp", organization_id: default_org.id, hub_type: "project" }
+hub5_info = { 
+  name: "Default Project", 
+  description: "An example of a group specific to a project in development within your company", 
+  organization_id: default_org.id, 
+  hub_type: "project" 
+}
 hub5 = Hub.create(hub5_info)
 
-hub6_info = { name: "Default Project", description: "Default project for Trello", organization_id: other_org.id, hub_type: "project" }
+hub6_info = { 
+  name: "Default Project", 
+  description: "An example of a group specific to a project in development within your company", 
+  organization_id: other_org.id, 
+  hub_type: "project" 
+}
 hub6 = Hub.create(hub6_info)
 
 # Message Boards

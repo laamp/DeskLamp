@@ -59,6 +59,8 @@
     0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 17px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hub-tile a {
@@ -71,4 +73,6 @@
 
 .hub-tile h3 {
   font-weight: normal;
+  margin: 10px 0;
+  font-size: 16px;
 }

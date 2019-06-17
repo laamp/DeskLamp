@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { signOut, clearErrors } from '../../actions/session_actions';
-import { fetchHubs } from '../../actions/hub_actions';
+import { fetchHubs, createHub } from '../../actions/hub_actions';
 import OrganizationHome from './organization_home';
 
 const mapStateToProps = (state, { match }) => {
@@ -14,6 +14,7 @@ const mapStateToProps = (state, { match }) => {
 const mapDispatchToProps = dispatch => {
   return ({
     fetchHubs: orgId => dispatch(fetchHubs(orgId)),
+    createHub: hub => dispatch(createHub(hub)),
     signOut: () => dispatch(signOut()),
     clearErrors: () => dispatch(clearErrors())
   });

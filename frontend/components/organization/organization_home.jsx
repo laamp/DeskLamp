@@ -8,9 +8,19 @@ class OrganizationHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      newProjectToggle: false,
+      newTeamToggle: false,
+      name: "",
+      description: "",
+      hub_type: -1,
+      organization_id: -1
     };
     manualSave();
+
+    this.newTeamToggle = this.newTeamToggle.bind(this);
+    this.newProjectToggle = this.newProjectToggle.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidUpdate() {
@@ -27,6 +37,42 @@ class OrganizationHome extends React.Component {
     this.props.clearErrors();
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const newHub = Object.assign(
+      {}, {
+        name: this.state.name,
+        description: this.state.description,
+        hub_type: this.state.hub_type,
+        organization_id: this.state.organization_id
+      }
+    );
+    this.props.createHub(newHub).then(() => {
+      this.props.fetchHubs(this.props.currentOrganization.id);
+      manualSave();
+    });
+  }
+
+  updateField(field, hubType) {
+    return e => this.setState({
+      [field]: e.currentTarget.value,
+      hub_type: hubType,
+      organization_id: this.props.currentOrganization.id
+    });
+  }
+
+  newProjectToggle() {
+    let flag = this.state.newProjectToggle;
+
+    this.setState({ newProjectToggle: !flag, newTeamToggle: false });
+  }
+
+  newTeamToggle() {
+    let flag = this.state.newTeamToggle;
+
+    this.setState({ newProjectToggle: false, newTeamToggle: !flag });
+  }
+
   renderHubs(hubtype) {
     let companyName = this.props.currentOrganization.name;
     companyName = companyName.slice(0, 1).toUpperCase() + companyName.slice(1);
@@ -34,7 +80,21 @@ class OrganizationHome extends React.Component {
     return (
       <>
         <div className='hub-divider'>
+          {this.state.newProjectToggle && hubtype === "project" ? this.renderNewHubForm(hubtype) : <></>}
+          {this.state.newTeamToggle && hubtype === "team" ? this.renderNewHubForm(hubtype) : <></>}
           <p>
+            {hubtype === "team"
+              ? <button type="button" onClick={this.newTeamToggle} className="add-hub-button">
+                <span>+</span>New
+                </button>
+              : <></>
+            }
+            {hubtype === "project"
+              ? <button type="button" onClick={this.newProjectToggle} className="add-hub-button">
+                <span>+</span>New
+                </button>
+              : <></>
+            }
             <span>
               {hubtype === "company" ? companyName :
                 hubtype.slice(0, 1).toUpperCase() + hubtype.slice(1)}
@@ -68,6 +128,20 @@ class OrganizationHome extends React.Component {
           </li>
         ))}
       </ul>
+    );
+  }
+
+  renderNewHubForm(formType) {
+    return (
+      <div className="new-hub-form-wrapper">
+        <form className="new-hub-form" onSubmit={this.handleSubmit}>
+          <input type="text" onChange={this.updateField("name", formType)}
+            placeholder={`Enter your ${formType} name`} />
+          <input type="text" onChange={this.updateField("description", formType)}
+            placeholder="Enter a description" />
+          <input type="submit" value="Create" />
+        </form>
+      </div>
     );
   }
 

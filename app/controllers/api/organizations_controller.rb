@@ -13,7 +13,8 @@ class Api::OrganizationsController < ApplicationController
         @organization.save
 
         # create default company hub for new organization
-        hub_desc = "Default workspace for " + @organization.name
+        hub_desc = "A place for company-wide announcements and things that
+        everyone should be aware of";
         hub_info = { name: @organization.name, description: hub_desc,
           organization_id: @organization.id, hub_type: "company" }
         @hub = Hub.new(hub_info)
@@ -21,7 +22,8 @@ class Api::OrganizationsController < ApplicationController
 
         hub_info_team = {
           name: "Default Team",
-          description: "Default team workspace",
+          description: "An example of a group specific to a team at your 
+          company",
           organization_id: @organization.id,
           hub_type: "team"
         };
@@ -29,7 +31,8 @@ class Api::OrganizationsController < ApplicationController
 
         hub_info_project = {
           name: "Default Project",
-          description: "Default project workspace",
+          description: "An example of a group specific to a project in 
+          development within your company",
           organization_id: @organization.id,
           hub_type: "project"
         };
