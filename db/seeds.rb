@@ -107,15 +107,31 @@ post1_info = {
   message_board_id: desklamp_message_board.id
 }
 post1 = MessageBoardPost.create(post1_info)
-
 post2_info = { 
+  category: "Standard",
+  title: "Git Commits",
+  body: "Make sure to add a commit message",
+  author_id: guest.id,
+  message_board_id: desklamp_message_board.id
+}
+post2 = MessageBoardPost.create(post2_info)
+post3_info = { 
+  category: "Fun",
+  title: "Game Night",
+  body: "Game night is every Wednesday after work",
+  author_id: guest.id,
+  message_board_id: desklamp_message_board.id
+}
+post3 = MessageBoardPost.create(post3_info)
+
+post4_info = { 
   category: "Fun", 
   title: "4th of July", 
   body: "Cookout and fireworks start at 7pm", 
   author_id: user1.id, 
   message_board_id: trello_message_board.id 
 }
-post2 = MessageBoardPost.create(post2_info)
+post4 = MessageBoardPost.create(post4_info)
 
 # Todo List Collections
 desklamp_todo_coll_info = { hub_id: hub1.id }
