@@ -22,7 +22,16 @@ class HubShow extends React.Component {
 
   render() {
     return (
-      <h1>Hub View</h1>
+      <>
+        <LoggedInHeaderContainer />
+        <section className="hub-show-wrapper">
+          <section className="hub-show-container">
+            <section className="message-board"></section>
+            <section className="todo-list"></section>
+            <section className="schedulse"></section>
+          </section>
+        </section>
+      </>
     );
   }
 }

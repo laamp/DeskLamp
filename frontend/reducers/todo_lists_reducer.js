@@ -13,11 +13,7 @@ const todoListsReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_TODO_COLLECTION:
       return Object.assign(
-        {}, oldState, {
-          todoListCollections: {
-            [action.todo_list_collection.id]: action.todo_list_collection
-          }
-        }
+        {}, oldState, { todoListCollections: action.todo_list_collection }
       );
     case RECEIVE_ALL_TODO_LISTS:
       return Object.assign(

@@ -10,11 +10,7 @@ const messageBoardsReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_MESSAGE_BOARD:
       return Object.assign(
-        {}, oldState, {
-          messageBoards: {
-            [action.message_board.id]: action.message_board
-          }
-        }
+        {}, oldState, { messageBoards: action.message_board }
       );
     case RECEIVE_ALL_POSTS:
       return Object.assign(

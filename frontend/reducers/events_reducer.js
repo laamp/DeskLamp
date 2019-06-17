@@ -10,11 +10,7 @@ const eventsReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_SCHEDULE:
       return Object.assign(
-        {}, oldState, {
-          schedules: {
-            [action.schedule.id]: action.schedule
-          }
-        }
+        {}, oldState, { schedules: action.schedule }
       );
     case RECEIVE_ALL_EVENTS:
       return Object.assign(

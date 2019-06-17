@@ -162,7 +162,7 @@ class OrganizationHome extends React.Component {
 
     return (
       <>
-        <LoggedInHeaderContainer currentOrganization={this.props.currentOrganization} />
+        <LoggedInHeaderContainer />
         {this.renderErrors()}
 
         <section className='hubs-wrapper'>

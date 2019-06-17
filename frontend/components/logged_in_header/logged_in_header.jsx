@@ -32,7 +32,6 @@ class LoggedInHeader extends React.Component {
   }
 
   render() {
-    if (!this.props.currentOrganization) return null;
     return (
       <header className="logged-in-header">
         <div className="left-header-item">
