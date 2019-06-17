@@ -26,9 +26,9 @@ class HubShow extends React.Component {
         <LoggedInHeaderContainer />
         <section className="hub-show-wrapper">
           <section className="hub-show-container">
-            <section className="message-board"></section>
-            <section className="todo-list"></section>
-            <section className="schedulse"></section>
+            <section className="hub-show-tile message-board"></section>
+            <section className="hub-show-tile todo-list"></section>
+            <section className="hub-show-tile schedule"></section>
           </section>
         </section>
       </>

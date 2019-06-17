@@ -7,6 +7,12 @@ class Api::HubsController < ApplicationController
     @hub = Hub.new(hub_params)
 
     if @hub.save
+      todo_collection = TodoListCollection.new({ hub_id: @hub.id })
+      todo_collection.save!
+      message_board = MessageBoard.new({ hub_id: @hub.id })
+      message_board.save!
+      schedule = Schedule.new({ hub_id: @hub.id })
+      schedule.save!
       render :show
     else
       render json: @hub.errors.full_messages, status: 422

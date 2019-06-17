@@ -1,0 +1,31 @@
+@import "variables";
+
+.hub-show-wrapper {}
+
+.hub-show-container {
+  width: 848px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.hub-show-tile {
+  width: 215px;
+  height: 225px;
+  padding: 18px 24px;
+  background-color: black;
+
+}
+
+.hub-show-tile.message-board {}
+
+.hub-show-tile.todo-list {}
+
+.hub-show-tile.schedule {}
