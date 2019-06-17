@@ -20,6 +20,7 @@ class OrganizationHome extends React.Component {
 
     this.newTeamToggle = this.newTeamToggle.bind(this);
     this.newProjectToggle = this.newProjectToggle.bind(this);
+    this.toggleOff = this.toggleOff.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -71,6 +72,10 @@ class OrganizationHome extends React.Component {
     let flag = this.state.newTeamToggle;
 
     this.setState({ newProjectToggle: false, newTeamToggle: !flag });
+  }
+
+  toggleOff() {
+    this.setState({ newProjectToggle: false, newTeamToggle: false });
   }
 
   renderHubs(hubtype) {
@@ -133,15 +138,21 @@ class OrganizationHome extends React.Component {
 
   renderNewHubForm(formType) {
     return (
-      <div className="new-hub-form-wrapper">
-        <form className="new-hub-form" onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.updateField("name", formType)}
-            placeholder={`Enter your ${formType} name`} />
-          <input type="text" onChange={this.updateField("description", formType)}
-            placeholder="Enter a description" />
-          <input type="submit" value="Create" />
-        </form>
-      </div>
+      <>
+        <div className="up-pointer hub-form-pointer"></div>
+        <div className="new-hub-form-wrapper">
+          <form className="new-hub-form" onSubmit={this.handleSubmit}>
+            <input type="text" onChange={this.updateField("name", formType)}
+              placeholder={`Enter your ${formType} name`} />
+            <input type="text" onChange={this.updateField("description", formType)}
+              placeholder="Enter a description" />
+            <div>
+              <input className="hub-submit" type="submit" value="Create" />
+              <button className="hub-cancel" onClick={this.toggleOff}> Cancel</button>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 
