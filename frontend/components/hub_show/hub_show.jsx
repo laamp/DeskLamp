@@ -35,9 +35,21 @@ class HubShow extends React.Component {
     });
 
     this.props.fetchTodoCollection(hubId).then(collection => {
-      window.collection = collection;
-      this.props.fetchAllLists(Object.keys(collection.todo_list_collection)[0]).then(lists => {
-        window.lists = lists;
+      let collectionId = Object.keys(collection.todo_list_collection)[0];
+      this.props.fetchAllLists(collectionId).then(lists => {
+        let localLists = this.state.lists;
+        let newLists = Object.values(lists.todo_lists);
+        for (let i = 0; i < newLists.length; i++) {
+          localLists.push(newLists[i]);
+          let listId = newLists[i].id;
+          this.props.fetchAllTasks(collectionId, listId).then(tasks => {
+            let localTasks = this.state.tasks;
+            let newTasks = tasks.todo_tasks;
+            this.setState({ tasks: localTasks.concat(newTasks) });
+            window.test = this.state.tasks;
+          });
+        }
+        this.setState({ lists: localLists });
       });
     });
   }
@@ -67,6 +79,22 @@ class HubShow extends React.Component {
 
               <section className="hub-show-tile todo-list">
                 <div className="hub-tile-title">To-dos</div>
+                <ul>
+                  {
+                    this.state.lists.map(list =>
+                      <li className="todo-list-preview" key={list.id}>
+                        <p className="todo-list-name">{list.name}</p>
+                        <ul>
+                          {
+                            this.state.tasks.map(task =>
+                              <li className="task-preview" key={task.id}>
+                                <p className="task-name">{task.name}</p>
+                              </li>)
+                          }
+                        </ul>
+                      </li>)
+                  }
+                </ul>
               </section>
 
               <section className="hub-show-tile schedule">

@@ -141,16 +141,16 @@ trello_todo_coll_info = { hub_id: hub2.id }
 trello_todo_coll = TodoListCollection.create(trello_todo_coll_info)
 
 desklamp_team_todo_coll_info = { hub_id: hub3.id }
-desklamp_todo_coll = TodoListCollection.create(desklamp_team_todo_coll_info)
+desklamp_team_todo_coll = TodoListCollection.create(desklamp_team_todo_coll_info)
 
 trello_team_todo_coll_info = { hub_id: hub4.id }
-trello_todo_coll = TodoListCollection.create(trello_team_todo_coll_info)
+trello_team_todo_coll = TodoListCollection.create(trello_team_todo_coll_info)
 
 desklamp_project_todo_coll_info = { hub_id: hub5.id }
-desklamp_todo_coll = TodoListCollection.create(desklamp_project_todo_coll_info)
+desklamp_project_todo_coll = TodoListCollection.create(desklamp_project_todo_coll_info)
 
 trello_project_todo_coll_info = { hub_id: hub6.id }
-trello_todo_coll = TodoListCollection.create(trello_project_todo_coll_info)
+trello_project_todo_coll = TodoListCollection.create(trello_project_todo_coll_info)
 
 # Todo Lists
 todo_list1_info = { 
@@ -165,6 +165,32 @@ todo_list2_info = {
 }
 todo_list1 = TodoList.create(todo_list1_info)
 todo_list2 = TodoList.create(todo_list2_info)
+
+todo_list3_info = { 
+  name: "Todo List 3",
+  details: "Desklamp team stuff to do", 
+  todo_collection_id: desklamp_team_todo_coll.id 
+}
+todo_list4_info = { 
+  name: "Todo List 4", 
+  details: "Trello team to do list", 
+  todo_collection_id: trello_team_todo_coll.id 
+}
+todo_list3 = TodoList.create(todo_list3_info)
+todo_list4 = TodoList.create(todo_list4_info)
+
+todo_list5_info = { 
+  name: "Todo List 5",
+  details: "Desklamp project work list", 
+  todo_collection_id: desklamp_project_todo_coll.id 
+}
+todo_list6_info = { 
+  name: "Todo List 6", 
+  details: "Trello project to do list", 
+  todo_collection_id: trello_project_todo_coll.id 
+}
+todo_list5 = TodoList.create(todo_list5_info)
+todo_list6 = TodoList.create(todo_list6_info)
 
 # Todo Tasks
 task1_info = { 
@@ -266,3 +292,22 @@ event2_info = {
 
 event1 = Event.create(event1_info)
 event2 = Event.create(event2_info)
+
+# Edge Cases
+todo_list_test_info = { 
+  name: "Todo list test 1",
+  details: "Maybe this works", 
+  todo_collection_id: desklamp_todo_coll.id 
+}
+todo_list_test = TodoList.create(todo_list_test_info)
+
+task_test_info = { 
+  done: false, 
+  due_date: "22-08-3000", 
+  name: "Test task", 
+  details: "Is this a duplicate?", 
+  assignee_id: user1.id, 
+  author_id: guest.id, 
+  todo_list_id: todo_list_test.id 
+}
+todo_task_test = TodoTask.create(task_test_info)
