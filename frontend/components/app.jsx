@@ -9,6 +9,7 @@ import SignUpFormContainer from './session_form/signup_form_container';
 import OrganizationFormContainer from './organization_form/organization_form_container';
 import OrganizationHome from './organization/organization_container';
 import HubShowContainer from "./hub_show/hub_show_container";
+import ContactInfoFooter from "./footer";
 
 const App = () => (
   <>
@@ -21,6 +22,7 @@ const App = () => (
       <Route exact path="/" component={SplashComponent} />
       <Route path="*" component={NotFound} />
     </Switch>
+    <ContactInfoFooter />
   </>
 );
 
