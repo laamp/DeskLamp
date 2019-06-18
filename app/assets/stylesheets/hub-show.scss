@@ -25,6 +25,7 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, .25);
   background-color: white;
   border-radius: 3px;
+  overflow: hidden;
 }
 
 .hub-header {
@@ -74,4 +75,42 @@
 
 .hub-show-tile.todo-list {}
 
+.todo-list-preview {
+  width: 215px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.todo-list-name {
+  font-weight: bold;
+}
+
+.task-preview {
+  padding: 1px 0px 1px 15px;
+}
+
 .hub-show-tile.schedule {}
+
+.event-preview {
+  width: 215px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.event-preview-dates {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+
+.event-preview-notes {
+  font-weight: bold;
+}

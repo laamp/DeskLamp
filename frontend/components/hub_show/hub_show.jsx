@@ -15,6 +15,7 @@ class HubShow extends React.Component {
       tasks: [],
       events: []
     };
+    this.parseDate = this.parseDate.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +55,20 @@ class HubShow extends React.Component {
     });
   }
 
+  parseDate(date) {
+    const months = {
+      1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr",
+      5: "May", 6: "Jun", 7: "Jul", 8: "Aug",
+      9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"
+    }
+    let output = "";
+    let dateArray = date.split("-");
+    output += months[parseInt(dateArray[1])];
+    output = output + " " + dateArray[2] + ", " + parseInt(dateArray[0]);
+    window.arr = dateArray;
+    return (output);
+  }
+
   render() {
     return (
       <>
@@ -86,10 +101,13 @@ class HubShow extends React.Component {
                         <p className="todo-list-name">{list.name}</p>
                         <ul>
                           {
-                            this.state.tasks.map(task =>
-                              <li className="task-preview" key={task.id}>
-                                <p className="task-name">{task.name}</p>
-                              </li>)
+                            this.state.tasks.map(task => {
+                              if (task.todo_list_id === list.id) {
+                                return <li className="task-preview" key={task.id}>
+                                  <p className="task-name">{task.name}</p>
+                                </li>
+                              }
+                            })
                           }
                         </ul>
                       </li>)
@@ -103,8 +121,10 @@ class HubShow extends React.Component {
                   {this.state.events.map(event =>
                     <li className="event-preview" key={event.id}>
                       <p className="event-preview-notes">{event.notes}</p>
-                      <p className="event-preview-start">{event.startDate}</p>
-                      <p className="event-preview-end">{event.endDate}</p>
+                      <div className="event-preview-dates">
+                        <p className="event-preview-start">{this.parseDate(event.startDate)}&nbsp;to&nbsp;</p>
+                        <p className="event-preview-end">{this.parseDate(event.endDate)}</p>
+                      </div>
                     </li>
                   )}
                 </ul>
