@@ -237,16 +237,16 @@ trello_schedule_info = { hub_id: hub2.id }
 trello_schedule = Schedule.create(trello_schedule_info)
 
 desklamp_team_schedule_info = { hub_id: hub3.id }
-desklamp_schedule = Schedule.create(desklamp_team_schedule_info)
+desklamp_team_schedule = Schedule.create(desklamp_team_schedule_info)
 
 trello_team_schedule_info = { hub_id: hub4.id }
-trello_schedule = Schedule.create(trello_team_schedule_info)
+trello_team_schedule = Schedule.create(trello_team_schedule_info)
 
 desklamp_project_schedule_info = { hub_id: hub5.id }
-desklamp_schedule = Schedule.create(desklamp_project_schedule_info)
+desklamp_project_schedule = Schedule.create(desklamp_project_schedule_info)
 
 trello_project_schedule_info = { hub_id: hub6.id }
-trello_schedule = Schedule.create(trello_project_schedule_info)
+trello_project_schedule = Schedule.create(trello_project_schedule_info)
 
 # Events
 event1_info = { 
