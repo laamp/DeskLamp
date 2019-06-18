@@ -11,6 +11,7 @@ class HubShow extends React.Component {
     this.state = {
       loading: true,
       posts: [],
+      lists: [],
       tasks: [],
       events: []
     };
@@ -18,20 +19,27 @@ class HubShow extends React.Component {
 
   componentDidMount() {
     let hubId = this.props.match.params.hubId;
+
     this.props.fetchMessageBoard(hubId).then(board => {
       this.props.fetchAllPosts(Object.keys(board.message_board)[0]).then(posts => {
         let localPosts = Object.values(posts.message_board_posts);
         this.setState({ posts: localPosts });
       });
     });
+
     this.props.fetchSchedule(hubId).then(schedule => {
-      window.schedule = schedule;
       this.props.fetchAllEvents(Object.keys(schedule.schedule)[0]).then(events => {
-        // let localEvents = Object;
-        window.events = events;
+        let localEvents = Object.values(events.events);
+        this.setState({ events: localEvents });
       });
     });
-    this.props.fetchTodoCollection(hubId);
+
+    this.props.fetchTodoCollection(hubId).then(collection => {
+      window.collection = collection;
+      this.props.fetchAllLists(Object.keys(collection.todo_list_collection)[0]).then(lists => {
+        window.lists = lists;
+      });
+    });
   }
 
   render() {
@@ -63,6 +71,15 @@ class HubShow extends React.Component {
 
               <section className="hub-show-tile schedule">
                 <div className="hub-tile-title">Schedules</div>
+                <ul>
+                  {this.state.events.map(event =>
+                    <li className="event-preview" key={event.id}>
+                      <p className="event-preview-notes">{event.notes}</p>
+                      <p className="event-preview-start">{event.startDate}</p>
+                      <p className="event-preview-end">{event.endDate}</p>
+                    </li>
+                  )}
+                </ul>
               </section>
 
             </section>
