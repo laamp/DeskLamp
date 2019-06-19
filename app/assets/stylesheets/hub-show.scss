@@ -28,6 +28,18 @@
   overflow: hidden;
 }
 
+.tile-link {
+  text-decoration: none;
+
+  &:hover {
+    color: #1d2d35;
+  }
+
+  &:active {
+    color: #1d2d35;
+  }
+}
+
 .hub-header {
   width: 100%;
   color: $bc-black;

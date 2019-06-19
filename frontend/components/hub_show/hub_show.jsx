@@ -58,6 +58,8 @@ class HubShow extends React.Component {
   }
 
   parseDate(date) {
+    if (date === "" || date === undefined) return "";
+
     const months = {
       1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr",
       5: "May", 6: "Jun", 7: "Jul", 8: "Aug",
@@ -84,7 +86,7 @@ class HubShow extends React.Component {
             </section>
             <section className="hub-tiles-container">
 
-              <Link to={`/message_boards/${this.state.boardId}`}>
+              <Link className="tile-link" to={`/message_boards/${this.state.boardId}`}>
                 <section className="hub-show-tile message-board">
                   <div className="hub-tile-title">Message Board</div>
                   <ul>
