@@ -58,7 +58,7 @@ class HubShow extends React.Component {
   }
 
   parseDate(date) {
-    if (date === "" || date === undefined) return "";
+    if (date === "" || date === undefined || date === null) return "";
 
     const months = {
       1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr",
