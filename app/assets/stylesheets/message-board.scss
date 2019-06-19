@@ -1,0 +1,45 @@
+@import "variables";
+
+#message-board-wrapper {
+  width: 100%;
+}
+
+#message-board-header {
+  width: 848px;
+  background-color: white;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1),
+    0 10px 30px #f3ece8;
+  border-radius: 2px;
+
+  a {
+    display: inline-block;
+    margin: 12px 0 100px 0;
+  }
+}
+
+#message-board-body {
+  width: 928px;
+  background-color: white;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1),
+    0 10px 30px #f3ece8;
+  border-radius: 2px;
+  margin-top: -88px;
+}
+
+#message-board-body-title {
+  width: 83%;
+  margin: 0 auto;
+
+  h1 {
+    padding: 60px 0 10px 0;
+    color: $bc-black;
+    font-size: 2em;
+    border-bottom: 3px solid $bc-black;
+  }
+}

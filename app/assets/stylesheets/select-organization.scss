@@ -32,9 +32,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  width: 130px;
   padding-top: 7px;
+
+  p {
+    padding-right: 10px;
+  }
 }
 
 #right-header-div i {
@@ -42,9 +44,9 @@
 }
 
 #right-header-div button {
-  text-decoration: underline;
+  text-decoration: none;
   border: none;
-  color: #1b6ac9;
+  color: $bc-black;
   background-color: transparent;
   font-size: 15px;
   cursor: pointer;

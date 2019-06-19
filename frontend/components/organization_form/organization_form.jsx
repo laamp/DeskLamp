@@ -117,6 +117,7 @@ class OrganizationForm extends React.Component {
             </h1>
           </div>
           <div id='right-header-div'>
+            <p>Hello, {this.props.currentUser.name}</p>
             <Link to='/signin' title={this.props.currentUser.name}>
               <i className="material-icons">account_circle</i>
             </Link>
