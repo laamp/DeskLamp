@@ -105,9 +105,10 @@ class OrganizationForm extends React.Component {
 
   render() {
     const { organizations } = this.props;
-    if (this.state.loading) return <Loading />;
+
     return (
       <>
+        {this.state.loading === true ? <Loading /> : <></>}
         <section className="launchpad-header">
           <div id='left-header-div'>
             <img src={window.blankLogoUrl} alt="DeskLamp" />

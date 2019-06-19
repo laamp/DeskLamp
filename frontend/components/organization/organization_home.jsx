@@ -158,10 +158,9 @@ class OrganizationHome extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return <Loading />;
-
     return (
       <>
+        {this.state.loading === true ? <Loading /> : <></>}
         <LoggedInHeaderContainer />
         {this.renderErrors()}
 

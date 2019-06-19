@@ -4,7 +4,7 @@ const ContactInfoFooter = () => (
   <>
     <div id="footer-spacer"></div>
     <footer>
-      <div>Lance Smith</div>
+      <div>&copy;&nbsp;Lance Smith</div>
       <div>(503)689-5244</div>
       <div>
         <a href="https://docs.google.com/document/d/1PtVylZIK8l_Dz0MPppzU4bmlzffhNIecFfVJ_KOdDmU/edit?usp=sharing">

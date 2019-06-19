@@ -10,6 +10,7 @@ class HubShow extends React.Component {
     manualSave();
     this.state = {
       loading: true,
+      boardId: -1,
       posts: [],
       lists: [],
       tasks: [],
@@ -22,6 +23,8 @@ class HubShow extends React.Component {
     let hubId = this.props.match.params.hubId;
 
     this.props.fetchMessageBoard(hubId).then(board => {
+      let boardId = Object.values(board.message_board)[0].id;
+      this.setState({ boardId });
       this.props.fetchAllPosts(Object.keys(board.message_board)[0]).then(posts => {
         let localPosts = Object.values(posts.message_board_posts);
         this.setState({ posts: localPosts });
@@ -46,8 +49,7 @@ class HubShow extends React.Component {
           this.props.fetchAllTasks(collectionId, listId).then(tasks => {
             let localTasks = this.state.tasks;
             let newTasks = tasks.todo_tasks;
-            this.setState({ tasks: localTasks.concat(newTasks) });
-            window.test = this.state.tasks;
+            this.setState({ tasks: localTasks.concat(newTasks), loading: false });
           });
         }
         this.setState({ lists: localLists });
@@ -72,6 +74,7 @@ class HubShow extends React.Component {
   render() {
     return (
       <>
+        {this.state.loading === true ? <Loading /> : <></>}
         <LoggedInHeaderContainer />
         <section className="hub-show-wrapper">
           <section className="hub-show-container">
@@ -81,16 +84,18 @@ class HubShow extends React.Component {
             </section>
             <section className="hub-tiles-container">
 
-              <section className="hub-show-tile message-board">
-                <div className="hub-tile-title">Message Board</div>
-                <ul>
-                  {this.state.posts.map(post =>
-                    <li className="message-post-preview" key={post.id}>
-                      <p className="message-post-preview-title">{post.title}</p>
-                      <p>{post.body}</p>
-                    </li>)}
-                </ul>
-              </section>
+              <Link to={`/message_boards/${this.state.boardId}`}>
+                <section className="hub-show-tile message-board">
+                  <div className="hub-tile-title">Message Board</div>
+                  <ul>
+                    {this.state.posts.map(post =>
+                      <li className="message-post-preview" key={post.id}>
+                        <p className="message-post-preview-title">{post.title}</p>
+                        <p>{post.body}</p>
+                      </li>)}
+                  </ul>
+                </section>
+              </Link>
 
               <section className="hub-show-tile todo-list">
                 <div className="hub-tile-title">To-dos</div>
