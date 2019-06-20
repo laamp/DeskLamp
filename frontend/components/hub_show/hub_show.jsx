@@ -55,6 +55,8 @@ class HubShow extends React.Component {
         this.setState({ lists: localLists });
       });
     });
+
+    this.props.setCurrentHub(this.props.currentHub.id);
   }
 
   parseDate(date) {

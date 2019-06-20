@@ -35,7 +35,7 @@ class MessageBoardShow extends React.Component {
   }
 
   convertRailsDate(railsDate) {
-    if (railsDate === null) return "";
+    if (railsDate === null || railsDate === undefined) return "";
 
     const months = {
       1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr",
@@ -64,13 +64,16 @@ class MessageBoardShow extends React.Component {
 
           <section id="message-board-body">
             <section id="message-board-body-title">
-
+              <Link id="create-button" to="/message_board_posts/new">
+                <p>Create new post</p>
+              </Link>
               <h1>Message Board</h1>
             </section>
 
             <ul className="posts-list">
               {Object.values(this.props.allPosts).map(post =>
                 <Link to={`/message_board_posts/${post.id}`} key={post.id}>
+                  <>{console.log(post.id)}</>
                   <li className="message-board-post">
                     <p className="mb-post-title">{post.title}</p>
                     <div className="post-info">

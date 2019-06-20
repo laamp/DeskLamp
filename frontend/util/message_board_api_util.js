@@ -30,7 +30,7 @@ export const createPost = (messageBoardId, post) => {
     $.ajax({
       method: "POST",
       url: `api/message_boards/${messageBoardId}/message_board_posts`,
-      data: { post }
+      data: { message_board_post: post }
     })
   );
 };
