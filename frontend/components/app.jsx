@@ -10,7 +10,7 @@ import OrganizationFormContainer from './organization_form/organization_form_con
 import OrganizationHome from './organization/organization_container';
 import HubShowContainer from "./hub_show/hub_show_container";
 import MessageBoardShowContainer from "./message_board/message_board_container";
-import MessageBoardPostContainer from "./message_board_post/message_board_post";
+import MessageBoardPostContainer from "./message_board_post/message_board_post_container";
 import ContactInfoFooter from "./footer";
 
 const App = () => (
