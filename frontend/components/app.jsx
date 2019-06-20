@@ -10,6 +10,7 @@ import OrganizationFormContainer from './organization_form/organization_form_con
 import OrganizationHome from './organization/organization_container';
 import HubShowContainer from "./hub_show/hub_show_container";
 import MessageBoardShowContainer from "./message_board/message_board_container";
+import MessageBoardPostContainer from "./message_board_post/message_board_post";
 import ContactInfoFooter from "./footer";
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
       <ProtectedRoute path="/organizations/:organizationId" component={OrganizationHome} />
       <ProtectedRoute path="/hubs/:hubId" component={HubShowContainer} />
       <ProtectedRoute path="/message_boards/:messageBoardId" component={MessageBoardShowContainer} />
+      <ProtectedRoute path="/message_board_posts/:messageBoardPostId" component={MessageBoardPostContainer} />
       <Route exact path="/" component={SplashComponent} />
       <Route path="*" component={NotFound} />
     </Switch>

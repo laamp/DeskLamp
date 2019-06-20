@@ -13,7 +13,6 @@ class MessageBoardShow extends React.Component {
       hubId: -1,
       userNames: {}
     };
-    window.users = this.props.users;
   }
 
   componentDidMount() {
@@ -70,16 +69,16 @@ class MessageBoardShow extends React.Component {
 
             <ul className="posts-list">
               {Object.values(this.props.allPosts).map(post =>
-                <li className="message-board-post"
-                  key={post.id}
-                  onClick={() => <Redirect to={`/`} />}>
-                  <p className="mb-post-title">{post.title}</p>
-                  <div className="post-info">
-                    {this.renderUserName(post.authorId)}&nbsp;•&nbsp;
+                <Link to={`/message_board_posts/${post.id}`} key={post.id}>
+                  <li className="message-board-post">
+                    <p className="mb-post-title">{post.title}</p>
+                    <div className="post-info">
+                      {this.renderUserName(post.authorId)}&nbsp;•&nbsp;
                     <p>{this.convertRailsDate(post.createdAt)}</p>&nbsp;—&nbsp;
                     <p>{post.body}</p>
-                  </div>
-                </li>)}
+                    </div>
+                  </li>
+                </Link>)}
             </ul>
 
           </section>
