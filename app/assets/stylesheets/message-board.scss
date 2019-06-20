@@ -6,7 +6,7 @@
 
 #message-board-header {
   width: 848px;
-  height: 136px;
+  height: 126px;
   background-color: white;
   margin: 0 auto;
   font-weight: bold;
@@ -18,6 +18,8 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 10px;
 }
 
 #message-board-body {
@@ -111,6 +113,52 @@
   color: $bc-black;
   font-size: 38px;
   font-weight: bold;
+  padding: 60px 0 15px 0;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.this-post-body {}
+.this-post-body {
+  text-align: left;
+  padding: 20px 0 80px 90px;
+}
+
+#this-post-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 0 0 0;
+  width: 83%;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  p {
+    font-size: 18px;
+    padding: 0 0 8px 10px;
+  }
+}
+
+#delete-button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  right: 14px;
+  top: 13px;
+  float: right;
+
+  button {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    outline: 0;
+    border-radius: 100%;
+    background-color: white;
+    color: red;
+
+    i {
+      font-size: 34px;
+    }
+  }
+
+}

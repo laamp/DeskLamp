@@ -64,6 +64,7 @@ class MessageBoardShow extends React.Component {
 
           <section id="message-board-body">
             <section id="message-board-body-title">
+
               <h1>Message Board</h1>
             </section>
 

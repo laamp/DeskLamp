@@ -24,7 +24,7 @@ const receivePost = post => ({
 
 const deletedPost = post => ({
   type: DELETED_POST,
-  postId: post.id
+  postId: post
 });
 
 const receiveMessageBoardErrors = errors => ({
@@ -68,6 +68,6 @@ export const updatePost = (boardId, id, post) => dispatch => (
 
 export const deletePost = (boardId, id) => dispatch => (
   APIUtil.deletePost(boardId, id)
-    .then(() => dispatch(deletedPost()))
+    .then(post => dispatch(deletedPost(post)))
     .fail(err => dispatch(receiveMessageBoardErrors(err)))
 );
