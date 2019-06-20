@@ -69,7 +69,6 @@ class HubShow extends React.Component {
     let dateArray = date.split("-");
     output += months[parseInt(dateArray[1])];
     output = output + " " + dateArray[2] + ", " + parseInt(dateArray[0]);
-    window.arr = dateArray;
     return (output);
   }
 

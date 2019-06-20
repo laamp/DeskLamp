@@ -105,6 +105,7 @@ class OrganizationForm extends React.Component {
 
   render() {
     const { organizations } = this.props;
+    let { currentUser } = this.props;
 
     return (
       <>
@@ -117,8 +118,8 @@ class OrganizationForm extends React.Component {
             </h1>
           </div>
           <div id='right-header-div'>
-            <p>Hello, {this.props.currentUser.name}</p>
-            <Link to='/signin' title={this.props.currentUser.name}>
+            <p>Hello, {currentUser.name}</p>
+            <Link to='/signin' title={currentUser.name}>
               <i className="material-icons">account_circle</i>
             </Link>
             <button onClick={this.props.signOut}>Log out</button>

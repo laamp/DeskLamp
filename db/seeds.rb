@@ -107,14 +107,16 @@ post1_info = {
   message_board_id: desklamp_message_board.id
 }
 post1 = MessageBoardPost.create(post1_info)
+
 post2_info = { 
   category: "Standard",
   title: "Git Commits",
   body: "Make sure to add a commit message",
-  author_id: guest.id,
+  author_id: user1.id,
   message_board_id: desklamp_message_board.id
 }
 post2 = MessageBoardPost.create(post2_info)
+
 post3_info = { 
   category: "Fun",
   title: "Game Night",

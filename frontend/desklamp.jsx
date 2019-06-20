@@ -33,6 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const rootElement = document.getElementById('root');
-
   ReactDOM.render(<Root store={store} />, rootElement);
 });
