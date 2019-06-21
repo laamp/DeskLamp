@@ -15,6 +15,7 @@ class MessageBoardShowNew extends React.Component {
       postBody: ""
     };
     manualSave();
+    this.cancelSubmit = this.cancelSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -41,10 +42,17 @@ class MessageBoardShowNew extends React.Component {
         message_board_id: this.state.messageBoardId
       }
     );
+    if (newPost.title.length < 1 || newPost.body.length < 1) return;
+
     this.props.createPost(newPost.message_board_id, newPost).then(() => {
       manualSave();
       this.props.history.push(`/message_boards/${this.state.messageBoardId}`);
     });
+  }
+
+  cancelSubmit(e) {
+    e.preventDefault();
+    this.props.history.push(`/message_boards/${this.state.messageBoardId}`);
   }
 
   updateField(field) {
@@ -76,10 +84,10 @@ class MessageBoardShowNew extends React.Component {
               placeholder="Type a title..." />
             <div className="horizontal-divider"></div>
             <textarea id="post-body" type="text" onChange={this.updateField("postBody")}
-              placeholder="Write away..." />
-            <div>
+              placeholder="Write away..." rows="22" cols="50" />
+            <div id="post-buttons">
               <input className="post-submit" type="submit" value="Post" />
-              <button className="post-cancel">Cancel</button>
+              <button className="post-cancel" onClick={this.cancelSubmit}>Cancel</button>
             </div>
           </form>
         </section>

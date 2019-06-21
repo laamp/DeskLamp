@@ -201,6 +201,7 @@
 }
 
 #post-body {
+  font-family: 'Roboto', sans-serif;
   outline: 0;
   border: none;
   font-size: 18px;
@@ -213,4 +214,29 @@
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 1px;
+}
+
+.post-submit,
+.post-cancel {
+  margin-right: 20px;
+  outline: 0;
+  padding: 8px 20px;
+  border-radius: 2em;
+  border: 1px solid $bc-green;
+}
+
+.post-submit {
+  background-color: $bc-green;
+  color: white;
+}
+
+.post-cancel {
+  background-color: white;
+  color: $bc-green;
+}
+
+#post-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 15px 100px;
 }
