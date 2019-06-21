@@ -72,10 +72,11 @@ class MessageBoardShowNew extends React.Component {
 
         <section id="new-post-form-wrapper">
           <form className="new-post-form" onSubmit={this.handleSubmit.bind(this)}>
-            <input type="text" onChange={this.updateField("postTitle")}
-              placeholder="Enter title of your post" />
-            <input type="text" onChange={this.updateField("postBody")}
-              placeholder="Your post here" />
+            <input id="post-title" type="text" onChange={this.updateField("postTitle")}
+              placeholder="Type a title..." />
+            <div className="horizontal-divider"></div>
+            <textarea id="post-body" type="text" onChange={this.updateField("postBody")}
+              placeholder="Write away..." />
             <div>
               <input className="post-submit" type="submit" value="Post" />
               <button className="post-cancel">Cancel</button>
