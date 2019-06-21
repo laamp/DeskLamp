@@ -8,7 +8,7 @@ class MessageBoardShowNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      loading: true,
       hubId: -1,
       messageBoardId: -1,
       postTitle: "",
@@ -27,7 +27,7 @@ class MessageBoardShowNew extends React.Component {
       if (allBoards[i].id === hId) mbId = allBoards[i].id;
     }
 
-    this.setState({ hubId: hId, messageBoardId: mbId });
+    this.setState({ hubId: hId, messageBoardId: mbId, loading: false });
 
     manualSave();
   }

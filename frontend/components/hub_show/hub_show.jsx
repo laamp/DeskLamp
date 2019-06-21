@@ -11,6 +11,7 @@ class HubShow extends React.Component {
     this.state = {
       loading: true,
       boardId: -1,
+      collectionId: -1,
       posts: [],
       lists: [],
       tasks: [],
@@ -40,6 +41,7 @@ class HubShow extends React.Component {
 
     this.props.fetchTodoCollection(hubId).then(collection => {
       let collectionId = Object.keys(collection.todo_list_collection)[0];
+      this.setState({ collectionId });
       this.props.fetchAllLists(collectionId).then(lists => {
         let localLists = this.state.lists;
         let newLists = Object.values(lists.todo_lists);
@@ -100,28 +102,30 @@ class HubShow extends React.Component {
                 </section>
               </Link>
 
-              <section className="hub-show-tile todo-list">
-                <div className="hub-tile-title">To-dos</div>
-                <ul>
-                  {
-                    this.state.lists.map(list =>
-                      <li className="todo-list-preview" key={list.id}>
-                        <p className="todo-list-name">{list.name}</p>
-                        <ul>
-                          {
-                            this.state.tasks.map(task => {
-                              if (task.todo_list_id === list.id) {
-                                return <li className="task-preview" key={task.id}>
-                                  <p className="task-name">{task.name}</p>
-                                </li>
-                              }
-                            })
-                          }
-                        </ul>
-                      </li>)
-                  }
-                </ul>
-              </section>
+              <Link className="tile-link" to={`/todo_lists/${this.state.collectionId}`}>
+                <section className="hub-show-tile todo-list">
+                  <div className="hub-tile-title">To-dos</div>
+                  <ul>
+                    {
+                      this.state.lists.map(list =>
+                        <li className="todo-list-preview" key={list.id}>
+                          <p className="todo-list-name">{list.name}</p>
+                          <ul>
+                            {
+                              this.state.tasks.map(task => {
+                                if (task.todo_list_id === list.id) {
+                                  return <li className="task-preview" key={task.id}>
+                                    <p className="task-name">{task.name}</p>
+                                  </li>
+                                }
+                              })
+                            }
+                          </ul>
+                        </li>)
+                    }
+                  </ul>
+                </section>
+              </Link>
 
               <section className="hub-show-tile schedule">
                 <div className="hub-tile-title">Schedules</div>

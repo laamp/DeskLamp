@@ -16,7 +16,7 @@ class MessageBoardShow extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ hubId: this.props.currentBoard.id });
+    this.setState({ hubId: this.props.currentBoard.hubId });
 
     this.props.fetchAllPosts(this.props.currentBoardId)
       .then(() => {

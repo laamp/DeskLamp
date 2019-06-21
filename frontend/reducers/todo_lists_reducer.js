@@ -34,11 +34,14 @@ const todoListsReducer = (oldState = {}, action) => {
       delete newState.todoLists[action.listId];
       return newState;
     case RECEIVE_ALL_TODO_TASKS:
-      return Object.assign(
-        {}, oldState, {
-          todoListTasks: action.todo_tasks
-        }
-      );
+      let taskHash = {};
+      Object.values(oldState.todoListTasks).forEach(task => {
+        taskHash[task.id] = Object.assign({}, task);
+      });
+      action.todo_tasks.forEach(task => {
+        taskHash[task.id] = Object.assign({}, task);
+      });
+      return Object.assign({}, oldState, { todoListTasks: Object.values(taskHash) });
     case RECEIVE_TODO_TASK:
       return Object.assign(
         {}, oldState, {

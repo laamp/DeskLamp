@@ -12,6 +12,7 @@ import HubShowContainer from "./hub_show/hub_show_container";
 import MessageBoardShowContainer from "./message_board/message_board_container";
 import MessageBoardPostContainer from "./message_board_post/message_board_post_container";
 import MessageBoardPostNewContainer from "./message_board_post/message_board_post_new_container";
+import TodoListContainer from "./todo_collection/todo_list_collection_container";
 import ContactInfoFooter from "./footer";
 
 const App = () => (
@@ -19,12 +20,18 @@ const App = () => (
     <Switch>
       <AuthRoute exact path="/signin" component={SignInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+
       <ProtectedRoute exact path="/organizations" component={OrganizationFormContainer} />
       <ProtectedRoute path="/organizations/:organizationId" component={OrganizationHome} />
+
       <ProtectedRoute path="/hubs/:hubId" component={HubShowContainer} />
+
       <ProtectedRoute path="/message_boards/:messageBoardId" component={MessageBoardShowContainer} />
       <ProtectedRoute exact path="/message_board_posts/new" component={MessageBoardPostNewContainer} />
       <ProtectedRoute path="/message_board_posts/:messageBoardPostId" component={MessageBoardPostContainer} />
+
+      <ProtectedRoute path="/todo_lists/:todoListCollectionId" component={TodoListContainer} />
+
       <Route exact path="/" component={SplashComponent} />
       <Route path="*" component={NotFound} />
     </Switch>
