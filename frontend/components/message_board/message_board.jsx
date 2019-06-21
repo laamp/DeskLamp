@@ -71,9 +71,11 @@ class MessageBoardShow extends React.Component {
             </section>
 
             <ul className="posts-list">
-              {Object.values(this.props.allPosts).map(post =>
+              {Object.values(this.props.allPosts).filter(post => {
+                if (post.id === undefined) return false;
+                return true;
+              }).map(post =>
                 <Link to={`/message_board_posts/${post.id}`} key={post.id}>
-                  <>{console.log(post.id)}</>
                   <li className="message-board-post">
                     <p className="mb-post-title">{post.title}</p>
                     <div className="post-info">
