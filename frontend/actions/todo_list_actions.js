@@ -72,19 +72,19 @@ export const fetchTodoList = (collectionId, id) => dispatch => (
     .fail(err => dispatch(receiveTodoErrors(err)))
 );
 
-export const createTodoList = (collectionId, todoList) => (
+export const createTodoList = (collectionId, todoList) => dispatch => (
   APIUtil.createTodoList(collectionId, todoList)
     .then(list => dispatch(receiveTodoList(list)))
     .fail(err => dispatch(receiveTodoErrors(err)))
 );
 
-export const updateTodoList = (collectionId, id, todoList) => (
+export const updateTodoList = (collectionId, id, todoList) => dispatch => (
   APIUtil.updateTodoList(collectionId, id, todoList)
     .then(list => dispatch(receiveTodoList(list)))
     .fail(err => dispatch(receiveTodoErrors(err)))
 );
 
-export const deleteTodoList = (collectionId, id) => (
+export const deleteTodoList = (collectionId, id) => dispatch => (
   APIUtil.deleteTodoList(collectionId, id)
     .then(list => dispatch(deletedTodoList(list)))
     .fail(err => dispatch(receiveTodoErrors(err)))

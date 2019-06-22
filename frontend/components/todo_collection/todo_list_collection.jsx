@@ -9,6 +9,10 @@ class TodoListCollection extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      createNewList: false,
+      listname: "",
+      listdetails: "",
+      createNewTask: false,
       hubId: -1,
       listIds: [],
       taskIds: []
@@ -27,10 +31,44 @@ class TodoListCollection extends React.Component {
         });
       }
       this.setState({ loading: false, listIds, taskIds });
-      window.tasks = this.props.todoTasks;
-      window.taskIds = this.state.taskIds;
       manualSave();
     });
+  }
+
+  toggleListForm(e) {
+    e.preventDefault();
+    this.setState({ createNewList: true });
+  }
+
+  updateField(field) {
+    return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newList = {
+      name: this.state.listname,
+      details: this.state.listdetails,
+      todo_collection_id: this.props.collectionId
+    };
+    this.props.createList(newList.todo_collection_id, newList).then(({ todo_list }) => {
+      let newId = Object.values(todo_list)[0].id;
+      let oldIds = this.state.listIds;
+      oldIds.push(newId);
+      this.setState({
+        createNewList: false,
+        listIds: oldIds,
+        listname: "",
+        listdetails: ""
+      });
+      this.props.fetchAllLists(this.props.collectionId);
+      manualSave();
+    });
+  }
+
+  cancelSubmit(e) {
+    e.preventDefault();
+    this.setState({ createNewList: false });
   }
 
   render() {
@@ -38,42 +76,60 @@ class TodoListCollection extends React.Component {
       <>
         {this.state.loading === true ? <Loading /> : <></>}
         <LoggedInHeaderContainer />
-        <section id="todo-lists-wrapper">
-          <section id="todo-lists-header">
+        <section id="message-board-wrapper">
+          <section id="message-board-header">
             <Link id="hub-link" to={`/hubs/${this.state.hubId}`}>
               <i className="material-icons">dashboard</i>
               <p>Link to Hub</p>
             </Link>
           </section>
 
-          <section id="todo-collection-body">
-            <section id="todo-collection-body-title">
-              {/* <Link id="create-button" to="/organizations">
+          <section id="message-board-body">
+            <section id="message-board-body-title">
+              <div id="create-button" onClick={this.toggleListForm.bind(this)}>
                 <p>Create new todo list</p>
-              </Link> */}
+              </div>
               <h1>Todo Lists</h1>
             </section>
 
             <ul className="todo-lists">
-              {this.state.listIds.map(i =>
-                <li key={i}>
-                  <p>
-                    <span>
-                      {this.props.todoLists[i].name}
-                    </span>
-                    &nbsp;—&nbsp;
+              {this.state.createNewList ?
+                <form id="new-list-form" onSubmit={this.handleSubmit.bind(this)}>
+                  <input type="text" id="new-list-name"
+                    placeholder="Give this list a name..."
+                    onChange={this.updateField("listname")} />
+                  <input type="text" id="new-list-details"
+                    placeholder="Describe this list..."
+                    onChange={this.updateField("listdetails")} />
+                  <div id="post-buttons">
+                    <input className="post-submit" type="submit" value="Create list" />
+                    <button className="post-cancel" onClick={this.cancelSubmit.bind(this)}>Cancel</button>
+                  </div>
+                </form> : <></>
+              }
+              {this.state.listIds.map(i => {
+                if (this.props.todoLists[i]) {
+                  return (
+                    <li key={i}>
+                      <p>
+                        <span>
+                          {this.props.todoLists[i].name}
+                        </span>
+                        &nbsp;—&nbsp;
                     {this.props.todoLists[i].details}
-                  </p>
+                      </p>
 
-                  {this.props.todoTasks.filter(globalTask => {
-                    if (globalTask.todo_list_id === i) return true;
-                  }).map(task =>
-                    <section key={task.id}>
-                      <p>{task.name}</p>
-                    </section>
-                  )}
-                </li>
-              )}
+                      {this.props.todoTasks.filter(globalTask => {
+                        if (globalTask.todo_list_id === i) return true;
+                      }).map(task =>
+                        <section key={task.id}>
+                          <p>{task.name}</p>
+                        </section>
+                      )}
+                    </li>
+                  );
+                }
+              })}
             </ul>
 
           </section>
