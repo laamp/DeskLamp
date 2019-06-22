@@ -13,6 +13,8 @@ class TodoListCollection extends React.Component {
       listname: "",
       listdetails: "",
       createNewTask: false,
+      taskname: "",
+      taskdetails: "",
       hubId: -1,
       listIds: [],
       taskIds: []
@@ -71,6 +73,39 @@ class TodoListCollection extends React.Component {
     this.setState({ createNewList: false });
   }
 
+  handleTaskSubmit(e, listId) {
+    e.preventDefault();
+    const newTask = {
+      name: this.state.taskname,
+      details: this.state.taskdetails,
+      assignee_id: this.props.currentUserId,
+      author_id: this.props.currentUserId,
+      todo_list_id: listId,
+      due_date: "1970-01-01"
+    };
+    this.props.createTask(this.props.collectionId, newTask.todo_list_id, newTask)
+      .then(({ todo_task }) => {
+        console.log(todo_task);
+      });
+  }
+
+  renderNewTaskForm(listId) {
+    return (
+      <form id="new-task-form" onSubmit={() => this.handleTaskSubmit(event, listId)}>
+        <input type="text" id="new-task-name"
+          placeholder="Give this task a name..."
+          onChange={this.updateField("taskname")} />
+        <input type="text" id="new-task-details"
+          placeholder="Describe this task..."
+          onChange={this.updateField("taskdetails")} />
+        <div id="post-buttons">
+          <input className="post-submit" type="submit" value="Create task" />
+          <button className="post-cancel" onClick={this.cancelSubmit.bind(this)}>Cancel</button>
+        </div>
+      </form>
+    );
+  }
+
   render() {
     return (
       <>
@@ -118,7 +153,7 @@ class TodoListCollection extends React.Component {
                         &nbsp;—&nbsp;
                     {this.props.todoLists[i].details}
                       </p>
-
+                      {console.log(this.props.todoTasks)}
                       {this.props.todoTasks.filter(globalTask => {
                         if (globalTask.todo_list_id === i) return true;
                       }).map(task =>
@@ -126,6 +161,8 @@ class TodoListCollection extends React.Component {
                           <p>{task.name}</p>
                         </section>
                       )}
+
+                      {this.renderNewTaskForm(i)}
                     </li>
                   );
                 }
