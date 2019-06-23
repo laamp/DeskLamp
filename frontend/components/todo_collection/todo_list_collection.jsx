@@ -12,7 +12,7 @@ class TodoListCollection extends React.Component {
       createNewList: false,
       listname: "",
       listdetails: "",
-      createNewTask: false,
+      createNewTask: [],
       taskname: "",
       taskdetails: "",
       hubId: -1,
@@ -20,6 +20,7 @@ class TodoListCollection extends React.Component {
       taskIds: []
     };
     manualSave();
+    this.taskChecked = this.taskChecked.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,22 @@ class TodoListCollection extends React.Component {
       this.setState({ loading: false, listIds, taskIds });
       manualSave();
     });
+  }
+
+  addListId(id) {
+    if (!this.state.createNewTask.includes(id)) {
+      let listIds = this.state.createNewTask;
+      listIds.push(id);
+      this.setState({ createNewTask: listIds });
+    }
+  }
+
+  removeListId(id) {
+    let filtered = this.state.createNewTask.filter(num => {
+      if (num !== id) return true;
+      return false;
+    });
+    this.setState({ createNewTask: filtered });
   }
 
   toggleListForm(e) {
@@ -58,12 +75,15 @@ class TodoListCollection extends React.Component {
       let oldIds = this.state.listIds;
       oldIds.push(newId);
       this.setState({
+        loading: true,
         createNewList: false,
         listIds: oldIds,
         listname: "",
         listdetails: ""
       });
-      this.props.fetchAllLists(this.props.collectionId);
+      this.props.fetchAllLists(this.props.collectionId).then(() => {
+        this.setState({ loading: false });
+      });
       manualSave();
     });
   }
@@ -85,7 +105,13 @@ class TodoListCollection extends React.Component {
     };
     this.props.createTask(this.props.collectionId, newTask.todo_list_id, newTask)
       .then(({ todo_task }) => {
-        console.log(todo_task);
+        this.setState({
+          loading: true,
+          createNewTask: [],
+          taskname: "",
+          taskdetails: ""
+        });
+        this.componentDidMount();
       });
   }
 
@@ -100,10 +126,28 @@ class TodoListCollection extends React.Component {
           onChange={this.updateField("taskdetails")} />
         <div id="post-buttons">
           <input className="post-submit" type="submit" value="Create task" />
-          <button className="post-cancel" onClick={this.cancelSubmit.bind(this)}>Cancel</button>
+          <button className="post-cancel" onClick={() => this.removeListId(listId)}>Cancel</button>
         </div>
       </form>
     );
+  }
+
+  taskChecked(e, listId, taskId) {
+    let task;
+    for (let i = 0; i < this.props.todoTasks.length; i++) {
+      if (this.props.todoTasks[i].id === taskId) {
+        task = this.props.todoTasks[i];
+      }
+    }
+    task.done = !task.done;
+    this.props.updateTask(
+      this.props.collectionId,
+      listId,
+      taskId,
+      task
+    ).then(({ todo_task }) => {
+      this.componentDidMount();
+    });
   }
 
   render() {
@@ -153,16 +197,21 @@ class TodoListCollection extends React.Component {
                         &nbsp;—&nbsp;
                     {this.props.todoLists[i].details}
                       </p>
-                      {console.log(this.props.todoTasks)}
                       {this.props.todoTasks.filter(globalTask => {
                         if (globalTask.todo_list_id === i) return true;
                       }).map(task =>
                         <section key={task.id}>
-                          <p>{task.name}</p>
+                          <p>
+                            <input type="checkbox" checked={task.done} onChange={() => this.taskChecked(event, i, task.id)} />
+                            {task.name}&nbsp;•&nbsp;{task.details}
+                          </p>
                         </section>
                       )}
 
-                      {this.renderNewTaskForm(i)}
+                      {this.state.createNewTask.includes(i) ?
+                        this.renderNewTaskForm(i) :
+                        <button onClick={() => this.addListId(i)}>Create new task</button>
+                      }
                     </li>
                   );
                 }

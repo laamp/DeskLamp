@@ -85,7 +85,7 @@ export const createTask = (collectionId, listId, task) => {
 export const updateTask = (collectionId, listId, id, task) => {
   return (
     $.ajax({
-      method: "POST",
+      method: "PATCH",
       url: `api/todo_list_collections/${collectionId}/todo_lists/${listId}/todo_tasks/${id}`,
       data: { todo_task: task }
     })
