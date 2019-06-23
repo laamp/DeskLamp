@@ -56,6 +56,7 @@ class HubShow extends React.Component {
         }
         this.setState({ lists: localLists });
       });
+      this.setState({ loading: false });
     });
 
     this.props.setCurrentHub(this.props.currentHub.id);
