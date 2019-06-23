@@ -197,7 +197,7 @@ class TodoListCollection extends React.Component {
                         &nbsp;—&nbsp;
                     {this.props.todoLists[i].details}
                       </p>
-                      {this.props.todoTasks.filter(globalTask => {
+                      {this.props.todoTasks !== undefined && this.props.todoTasks.filter(globalTask => {
                         if (globalTask.todo_list_id === i) return true;
                       }).map(task =>
                         <section key={task.id}>
