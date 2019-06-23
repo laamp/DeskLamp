@@ -1,0 +1,48 @@
+@import "variables";
+
+.todo-lists {
+  text-align: left;
+  padding: 30px 95px;
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
+
+  .list-title {
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 8px;
+  }
+
+  .task-info {
+    font-size: 20px;
+  }
+
+  .create-task-button {
+    font-size: 14px;
+    border-radius: 2em;
+    background-color: $bc-green;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px 0 0 10px;
+  }
+}
+
+.new-todo-form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.new-todo-name,
+.new-todo-details {
+  margin: 10px 5px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  outline: none;
+}

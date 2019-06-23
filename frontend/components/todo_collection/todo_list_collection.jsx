@@ -117,11 +117,11 @@ class TodoListCollection extends React.Component {
 
   renderNewTaskForm(listId) {
     return (
-      <form id="new-task-form" onSubmit={() => this.handleTaskSubmit(event, listId)}>
-        <input type="text" id="new-task-name"
+      <form className="new-todo-form" onSubmit={() => this.handleTaskSubmit(event, listId)}>
+        <input type="text" className="new-todo-name"
           placeholder="Give this task a name..."
           onChange={this.updateField("taskname")} />
-        <input type="text" id="new-task-details"
+        <input type="text" className="new-todo-details"
           placeholder="Describe this task..."
           onChange={this.updateField("taskdetails")} />
         <div id="post-buttons">
@@ -173,11 +173,11 @@ class TodoListCollection extends React.Component {
 
             <ul className="todo-lists">
               {this.state.createNewList ?
-                <form id="new-list-form" onSubmit={this.handleSubmit.bind(this)}>
-                  <input type="text" id="new-list-name"
+                <form className="new-todo-form" onSubmit={this.handleSubmit.bind(this)}>
+                  <input type="text" className="new-todo-name"
                     placeholder="Give this list a name..."
                     onChange={this.updateField("listname")} />
-                  <input type="text" id="new-list-details"
+                  <input type="text" className="new-todo-details"
                     placeholder="Describe this list..."
                     onChange={this.updateField("listdetails")} />
                   <div id="post-buttons">
@@ -190,7 +190,7 @@ class TodoListCollection extends React.Component {
                 if (this.props.todoLists[i]) {
                   return (
                     <li key={i}>
-                      <p>
+                      <p className="list-title">
                         <span>
                           {this.props.todoLists[i].name}
                         </span>
@@ -201,7 +201,7 @@ class TodoListCollection extends React.Component {
                         if (globalTask.todo_list_id === i) return true;
                       }).map(task =>
                         <section key={task.id}>
-                          <p>
+                          <p className="task-info">
                             <input type="checkbox" checked={task.done} onChange={() => this.taskChecked(event, i, task.id)} />
                             {task.name}&nbsp;•&nbsp;{task.details}
                           </p>
@@ -210,7 +210,7 @@ class TodoListCollection extends React.Component {
 
                       {this.state.createNewTask.includes(i) ?
                         this.renderNewTaskForm(i) :
-                        <button onClick={() => this.addListId(i)}>Create new task</button>
+                        <button className="create-task-button" onClick={() => this.addListId(i)}>Create new task</button>
                       }
                     </li>
                   );
