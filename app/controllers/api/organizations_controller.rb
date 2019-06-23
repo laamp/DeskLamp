@@ -19,6 +19,9 @@ class Api::OrganizationsController < ApplicationController
           organization_id: @organization.id, hub_type: "company" }
         @hub = Hub.new(hub_info)
         @hub.save
+        MessageBoard.create({ hub_id: @hub.id })
+        TodoListCollection.create({ hub_id: @hub.id })
+        Schedule.create({ hub_id: @hub.id })
 
         hub_info_team = {
           name: "Default Team",
@@ -27,7 +30,10 @@ class Api::OrganizationsController < ApplicationController
           organization_id: @organization.id,
           hub_type: "team"
         };
-        Hub.create(hub_info_team);
+        team_hub = Hub.create(hub_info_team);
+        MessageBoard.create({ hub_id: team_hub.id })
+        TodoListCollection.create({ hub_id: team_hub.id })
+        Schedule.create({ hub_id: team_hub.id })
 
         hub_info_project = {
           name: "Default Project",
@@ -36,7 +42,11 @@ class Api::OrganizationsController < ApplicationController
           organization_id: @organization.id,
           hub_type: "project"
         };
-        Hub.create(hub_info_project);
+        project_hub = Hub.create(hub_info_project);
+        MessageBoard.create({ hub_id: project_hub.id })
+        TodoListCollection.create({ hub_id: project_hub.id })
+        Schedule.create({ hub_id: project_hub.id })
+
       else
         @organization = Organization.find_by(name: params[:organization][:name])
       end
