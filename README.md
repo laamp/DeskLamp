@@ -69,12 +69,3 @@ DeskLamp is an app for teams of people to track tasks and communicate across the
 * Linking Users to Organizations
   * I had to create a joins table linking users to organizations because they share a many-to-many relationship
   * When a user creates an organization the organization controller creates an entry in my joins table between the user and organization
-
-## Future Additions
-* The ability to create and edit existing companies and hubs within those companies
-* Message Board within each hub to post messages anyone can see and comment on
-* Todo lists within each hub that have tasks that can be created and completed
-* Chat within each hub
-* Upload files to a hub
-* Schedule w/ calendar that can have events added at particular dates
-* User profile pages for editing personal info and seeing other users' public info
